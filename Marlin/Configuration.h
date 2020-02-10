@@ -1022,10 +1022,10 @@
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Set the boundaries for probing (where the probe can reach).
-  #define MIN_PROBE_EDGE_LEFT MIN_PROBE_EDGE
-  #define MIN_PROBE_EDGE_RIGHT (X_BED_SIZE - MIN_PROBE_EDGE) - 1
-  #define MIN_PROBE_EDGE_FRONT MIN_PROBE_EDGE
-  #define MIN_PROBE_EDGE_BACK (Y_BED_SIZE - MIN_PROBE_EDGE) - 1
+  #define MIN_PROBE_EDGE_LEFT 20
+  #define MIN_PROBE_EDGE_RIGHT 20
+  #define MIN_PROBE_EDGE_FRONT 20
+  #define MIN_PROBE_EDGE_BACK 20
 
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST
