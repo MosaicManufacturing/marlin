@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -25,7 +25,9 @@
  * Einsy-Rambo pin assignments
  */
 
-#include "env_validate.h"
+#ifndef __AVR_ATmega2560__
+  #error "Oops! Select 'Arduino Mega 2560 or Rambo' in 'Tools > Board.'"
+#endif
 
 #define BOARD_INFO_NAME "Einsy Rambo"
 
@@ -79,13 +81,6 @@
 #endif
 
 //
-// Filament Runout Sensor
-//
-#ifndef FIL_RUNOUT_PIN
-  #define FIL_RUNOUT_PIN                      62
-#endif
-
-//
 // Steppers
 //
 #define X_STEP_PIN                            37
@@ -111,16 +106,17 @@
 //
 // Temperature Sensors
 //
-#define TEMP_0_PIN                             0  // Analog Input
-#define TEMP_1_PIN                             1  // Analog Input
+#define TEMP_0_PIN                             8  // Analog Input, Changed from 0 -> 8 to get signal from PX3 Pin 8 Tsegai (amplifer board)
+//#define TEMP_1_PIN                             1  // Analog Input
 #define TEMP_BED_PIN                           2  // Analog Input
-#define TEMP_PROBE_PIN                         3  // Analog Input
+#define TEMP_CHAMBER_PIN                       1 //Added for heated Chamber. Comment if not used
 
 //
 // Heaters / Fans
 //
-#define HEATER_0_PIN                           3
-#define HEATER_BED_PIN                         4
+#define HEATER_0_PIN                           3 
+#define HEATER_BED_PIN                         5//changed from 4 to 5 to avoid pulling high from Bed out +
+#define HEATER_CHAMBER_PIN                     9     
 
 #ifndef FAN_PIN
   #define FAN_PIN                              8
@@ -158,11 +154,11 @@
 //
 // LCD / Controller
 //
-#if HAS_WIRED_LCD || TOUCH_UI_ULTIPANEL
+#if HAS_SPI_LCD || TOUCH_UI_ULTIPANEL
 
   #define KILL_PIN                            32
 
-  #if IS_ULTIPANEL || TOUCH_UI_ULTIPANEL
+  #if ENABLED(ULTIPANEL) || TOUCH_UI_ULTIPANEL
 
     #if ENABLED(CR10_STOCKDISPLAY)
       #define LCD_PINS_RS                     85
@@ -179,16 +175,11 @@
       #define LCD_PINS_D7                     71
       #define BTN_EN1                         14
       #define BTN_EN2                         72
-
-      #if ENABLED(REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER)
-        #define BTN_ENC_EN           LCD_PINS_D7  // Detect the presence of the encoder
-      #endif
-
     #endif
 
     #define BTN_ENC                            9  // AUX-2
     #define BEEPER_PIN                        84  // AUX-4
     #define SD_DETECT_PIN                     15
 
-  #endif // IS_ULTIPANEL || TOUCH_UI_ULTIPANEL
-#endif // HAS_WIRED_LCD
+  #endif // ULTIPANEL || TOUCH_UI_ULTIPANEL
+#endif // HAS_SPI_LCD
