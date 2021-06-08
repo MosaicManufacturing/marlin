@@ -384,7 +384,7 @@
 //
 // Assign endstop pins for boards with only 3 connectors
 //
-#ifdef X_STOP_PIN
+#ifdef X_STOP_PIN 
   #if X_HOME_DIR < 0
     #define X_MIN_PIN X_STOP_PIN
     #ifndef X_MAX_PIN

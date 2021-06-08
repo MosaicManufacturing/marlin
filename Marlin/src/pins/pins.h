@@ -466,6 +466,9 @@
 // STM32 ARM Cortex-M3
 //
 
+//! Custom el dorado board pins file
+#elif MB(EL_DORADO)
+  #include "stm32f1/pins_el_dorado.h"           // STM32F1                                env:el_dorado
 #elif MB(STM32F103RE)
   #include "stm32f1/pins_STM32F1R.h"            // STM32F1                                env:STM32F103RE
 #elif MB(MALYAN_M200)

@@ -294,6 +294,8 @@
 // STM32 ARM Cortex-M3
 //
 
+//! Custom el dorado board define
+#define BOARD_EL_DORADO               3999  // El Dorado Mosaic Custom Board
 #define BOARD_MALYAN_M200_V2          4000  // STM32F070CB controller
 #define BOARD_MALYAN_M300             4001  // STM32F070-based delta
 #define BOARD_STM32F103RE             4002  // STM32F103RE Libmaple-based STM32F1 controller
