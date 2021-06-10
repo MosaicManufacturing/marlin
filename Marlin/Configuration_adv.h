@@ -573,12 +573,12 @@
 /**
  * M355 Case Light on-off / brightness
  */
-//#define CASE_LIGHT_ENABLE
+#define CASE_LIGHT_ENABLE
 #if ENABLED(CASE_LIGHT_ENABLE)
 //#define CASE_LIGHT_PIN 4                  // Override the default pin if needed
 #define INVERT_CASE_LIGHT false           // Set true if Case Light is ON when pin is LOW
-#define CASE_LIGHT_DEFAULT_ON true        // Set default power-up state on
-#define CASE_LIGHT_DEFAULT_BRIGHTNESS 105 // Set default power-up brightness (0-255, requires PWM pin)
+#define CASE_LIGHT_DEFAULT_ON false        // Set default power-up state on
+#define CASE_LIGHT_DEFAULT_BRIGHTNESS 255 // Set default power-up brightness (0-255, requires PWM pin)
 //#define CASE_LIGHT_NO_BRIGHTNESS          // Disable brightness control. Enable for non-PWM lighting.
 //#define CASE_LIGHT_MAX_PWM 128            // Limit PWM duty cycle (0-255)
 //#define CASE_LIGHT_MENU                   // Add Case Light options to the LCD menu
@@ -1125,8 +1125,8 @@
  *    M908 - BQ_ZUM_MEGA_3D, RAMBO, PRINTRBOARD_REVF, RIGIDBOARD_V2 & SCOOVO_X9H
  *    M909, M910 & LCD - only PRINTRBOARD_REVF & RIGIDBOARD_V2
  */
-//#define PWM_MOTOR_CURRENT { 1300, 1300, 1250 }          // Values in milliamps
-//#define DIGIPOT_MOTOR_CURRENT { 135,135,135,135,135 }   // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
+// #define PWM_MOTOR_CURRENT { 1300, 1300, 1250 }          // Values in milliamps
+// #define DIGIPOT_MOTOR_CURRENT { 135,135,135,135,135 }   // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
 //#define DAC_MOTOR_CURRENT_DEFAULT { 70, 80, 90, 80 }    // Default drive percent - X, Y, Z, E axis
 
 /**
@@ -2697,10 +2697,10 @@
    * The default SW SPI pins are defined the respective pins files,
    * but you can override or define them here.
    */
-//#define TMC_USE_SW_SPI
-//#define TMC_SW_MOSI       -1
-//#define TMC_SW_MISO       -1
-//#define TMC_SW_SCK        -1
+#define TMC_USE_SW_SPI
+#define TMC_SW_MOSI       PB15
+#define TMC_SW_MISO       PB14
+#define TMC_SW_SCK        PB13
 
 /**
    * Four TMC2209 drivers can use the same HW/SW serial port with hardware configured addresses.
@@ -2792,7 +2792,7 @@
    * M912 - Clear stepper driver overtemperature pre-warn condition flag.
    * M122 - Report driver parameters (Requires TMC_DEBUG)
    */
-//#define MONITOR_DRIVER_STATUS
+// #define MONITOR_DRIVER_STATUS
 
 #if ENABLED(MONITOR_DRIVER_STATUS)
 #define CURRENT_STEP_DOWN 50 // [mA]
@@ -2889,7 +2889,7 @@
    * Enable M122 debugging command for TMC stepper drivers.
    * M122 S0/1 will enable continuous reporting.
    */
-//#define TMC_DEBUG
+#define TMC_DEBUG
 
 /**
    * You can set your own advanced settings by filling in predefined functions.

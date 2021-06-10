@@ -111,8 +111,14 @@
 //
 // Heaters / Fans //!Currently assuming ch1 is chamber and ch2 is coldend
 //
-#define HEATER_0_PIN                        PA3   // "HOTEND_HEAT" 
-#define HEATER_CHAMBER_PIN                  PD0   // "CH1_HEAT" 
+// #define HEATER_0_PIN                        PA3   // "HOTEND_HEAT" 
+// #define HEATER_CHAMBER_PIN                  PD0   // "CH1_HEAT" 
+// #define HEATER_1_PIN                        PD1   // "CH2_HEAT" 
+// #define HEATER_BED_PIN                      PA2   // "BED_HEAT"
+
+//?These settings are just to test if hotend signal will turn on led, not in final build, delete after!
+#define HEATER_0_PIN                        PD0   // "HOTEND_HEAT" 
+#define CASE_LIGHT_PIN                  PA3   // "CH1_HEAT" 
 #define HEATER_1_PIN                        PD1   // "CH2_HEAT" 
 #define HEATER_BED_PIN                      PA2   // "BED_HEAT"
 
