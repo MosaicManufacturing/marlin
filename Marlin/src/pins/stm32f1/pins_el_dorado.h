@@ -55,12 +55,12 @@
 //
 #define X_STOP_PIN                          -1   //!No limit switches
 #define Y_STOP_PIN                          -1   //!No limit switches
-#define Z_STOP_PIN                          -1   //!No limit switches
+#define Z_STOP_PIN                          PB1   
 
 //
 // Z Probe must be this pin
 //
-#define Z_MIN_PROBE_PIN                     PC14  // PROBE //!
+#define Z_MIN_PROBE_PIN                     Z_STOP_PIN  // PROBE 
 
 //
 // Filament Runout Sensor
@@ -101,7 +101,7 @@
 #define E0_CS_PIN                           PA12  // "E_nCS"
 
 //
-// Temperature Sensors  //!Currently assuming ch1 is chamber and ch2 is coldend
+// Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
 //
 #define TEMP_0_PIN                          PA5   // Analog Input "NOZ_THERM"
 #define TEMP_CHAMBER_PIN                    PA6   // Analog Input "CH1_THERM" 
@@ -111,26 +111,26 @@
 //
 // Heaters / Fans //!Currently assuming ch1 is chamber and ch2 is coldend
 //
-// #define HEATER_0_PIN                        PA3   // "HOTEND_HEAT" 
-// #define HEATER_CHAMBER_PIN                  PD0   // "CH1_HEAT" 
-// #define HEATER_1_PIN                        PD1   // "CH2_HEAT" 
-// #define HEATER_BED_PIN                      PA2   // "BED_HEAT"
-
-//?These settings are just to test if hotend signal will turn on led, not in final build, delete after!
-#define HEATER_0_PIN                        PD0   // "HOTEND_HEAT" 
-#define CASE_LIGHT_PIN                  PA3   // "CH1_HEAT" 
+#define HEATER_0_PIN                        PA3   // "HOTEND_HEAT" 
+#define HEATER_CHAMBER_PIN                  PD0   // "CH1_HEAT" 
 #define HEATER_1_PIN                        PD1   // "CH2_HEAT" 
 #define HEATER_BED_PIN                      PA2   // "BED_HEAT"
 
+//?These settings are just to test if hotend signal will turn on led, not in final build, delete after!
+// #define HEATER_0_PIN                        PD0   // "HOTEND_HEAT" 
+// #define CASE_LIGHT_PIN                  PA3   // "CH1_HEAT" 
+// #define HEATER_1_PIN                        PD1   // "CH2_HEAT" 
+// #define HEATER_BED_PIN                      PA2   // "BED_HEAT"
+
 //!FAN_PIN corresponds to FAN_1, FAN1_PIN corresponds to FAN_2 and etc.
-#define FAN_PIN                           PE11   // "FAN_1"
-#define FAN1_PIN                          PE10   // "FAN_2" 
-#define FAN2_PIN                          PE9    // "FAN_3" 
-#define FAN3_PIN                          PE8    // "FAN_4" 
-#define FAN4_PIN                          PE7    // "FAN_5" 
-#define FAN5_PIN                          PC12   // "FAN_6" 
-#define FAN6_PIN                          PC11   // "FAN_7" 
-#define FAN7_PIN                          PC10   // "FAN_8" 
+// #define FAN_PIN                           PE11   // "FAN_1"
+// #define FAN1_PIN                          PE10   // "FAN_2" 
+// #define FAN2_PIN                          PE9    // "FAN_3" 
+// #define FAN3_PIN                          PE8    // "FAN_4" 
+// #define FAN4_PIN                          PE7    // "FAN_5" 
+// #define FAN5_PIN                          PC12   // "FAN_6" 
+// #define FAN6_PIN                          PC11   // "FAN_7" 
+// #define FAN7_PIN                          PC10   // "FAN_8" 
 
 //
 // Miscellaneous 

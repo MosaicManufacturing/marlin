@@ -573,7 +573,7 @@
 /**
  * M355 Case Light on-off / brightness
  */
-#define CASE_LIGHT_ENABLE
+// #define CASE_LIGHT_ENABLE
 #if ENABLED(CASE_LIGHT_ENABLE)
 //#define CASE_LIGHT_PIN 4                  // Override the default pin if needed
 #define INVERT_CASE_LIGHT false           // Set true if Case Light is ON when pin is LOW
@@ -741,7 +741,7 @@
 
 #define HOMING_BUMP_MM \
    {                   \
-      5, 5, 2          \
+      5, 5, 5          \
    } // (mm) Backoff from endstops after first bump
 #define HOMING_BUMP_DIVISOR \
    {                        \
@@ -2744,9 +2744,9 @@
    * Use Trinamic's ultra quiet stepping mode.
    * When disabled, Marlin will use spreadCycle stepping mode.
    */
-#define STEALTHCHOP_XY
-#define STEALTHCHOP_Z
-#define STEALTHCHOP_E
+// #define STEALTHCHOP_XY
+// #define STEALTHCHOP_Z
+// #define STEALTHCHOP_E
 
 /**
    * Optimize spreadCycle chopper parameters by using predefined parameter sets
@@ -2851,20 +2851,20 @@
    *
    * Comment *_STALL_SENSITIVITY to disable sensorless homing for that axis.
    */
-//#define SENSORLESS_HOMING // StallGuard capable drivers only
+#define SENSORLESS_HOMING // StallGuard capable drivers only
 
 #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
 // TMC2209: 0...255. TMC2130: -64...63
-#define X_STALL_SENSITIVITY 8
-#define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-#define Y_STALL_SENSITIVITY 8
-#define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
+#define X_STALL_SENSITIVITY  3
+// #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
+#define Y_STALL_SENSITIVITY  2
+// #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
 //#define Z_STALL_SENSITIVITY  8
 //#define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
 //#define Z3_STALL_SENSITIVITY Z_STALL_SENSITIVITY
 //#define Z4_STALL_SENSITIVITY Z_STALL_SENSITIVITY
-//#define SPI_ENDSTOPS              // TMC2130 only
-//#define IMPROVE_HOMING_RELIABILITY
+#define SPI_ENDSTOPS              // TMC2130 only
+#define IMPROVE_HOMING_RELIABILITY
 #endif
 
 /**
