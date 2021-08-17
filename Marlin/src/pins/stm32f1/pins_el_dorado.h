@@ -103,18 +103,24 @@
 //
 // Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
 //
-#define TEMP_0_PIN                          PA5   // Analog Input "NOZ_THERM"
-#define TEMP_CHAMBER_PIN                    PA6   // Analog Input "CH1_THERM" 
-#define TEMP_1_PIN                          PA7   // Analog Input "CH2_THERM" 
+// #define TEMP_0_PIN                          PA5   // Analog Input "NOZ_THERM"
+// #define TEMP_BED_PIN                        PC4   // Analog Input "BED_THERM" 
+// #define TEMP_CHAMBER_PIN                    PA6   // Analog Input "CH1_THERM" //! PA6 is confirmed to correspond to thermistor above printhead pcb
+// #define TEMP_1_PIN                          PA7   // Analog Input "CH2_THERM" 
+
+//? Test values
+#define TEMP_1_PIN                          PA5   // Analog Input "NOZ_THERM"
 #define TEMP_BED_PIN                        PC4   // Analog Input "BED_THERM" 
+#define TEMP_CHAMBER_PIN                    PA6   // Analog Input "CH1_THERM" //! PA6 is confirmed to correspond to thermistor above printhead pcb
+#define TEMP_0_PIN                          PA7   // Analog Input "CH2_THERM"
 
 //
 // Heaters / Fans //!Currently assuming ch1 is chamber and ch2 is coldend
 //
 #define HEATER_0_PIN                        PA3   // "HOTEND_HEAT" 
+#define HEATER_BED_PIN                      PA2   // "BED_HEAT"
 #define HEATER_CHAMBER_PIN                  PD0   // "CH1_HEAT" 
 #define HEATER_1_PIN                        PD1   // "CH2_HEAT" 
-#define HEATER_BED_PIN                      PA2   // "BED_HEAT"
 
 //?These settings are just to test if hotend signal will turn on led, not in final build, delete after!
 // #define HEATER_0_PIN                        PD0   // "HOTEND_HEAT" 
@@ -124,7 +130,7 @@
 
 //!FAN_PIN corresponds to FAN_1, FAN1_PIN corresponds to FAN_2 and etc.
 // #define FAN_PIN                           PE11   // "FAN_1"
-// #define FAN1_PIN                          PE10   // "FAN_2" 
+#define FAN1_PIN                          PE10   // "FAN_2" 
 // #define FAN2_PIN                          PE9    // "FAN_3" 
 // #define FAN3_PIN                          PE8    // "FAN_4" 
 // #define FAN4_PIN                          PE7    // "FAN_5" 
@@ -143,16 +149,6 @@
 
 // #define BTN_EN1                           PC3   // "ENC_A"
 // #define BTN_EN2                           PA0   // "ENC_B"
-
-//*Uncomment below for inductive probe support
-
-
-//
-// USB connect control
-//
-// #define USB_CONNECT_PIN                   PD3  //! "USB_B_POWER?"
-
-// #define USB_CONNECT_INVERTING              false
 
 #ifndef BOARD_INFO_NAME
   #define BOARD_INFO_NAME "AEL105 Main Board V1.2.2"
