@@ -830,6 +830,9 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         case 603: M603(); break;                                  // M603: Configure Filament Change
       #endif
 
+      case 601: M601(); break;
+      case 602: M602(); break;
+
       #if HAS_DUPLICATION_MODE
         case 605: M605(); break;                                  // M605: Set Dual X Carriage movement mode
       #endif

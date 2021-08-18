@@ -38,7 +38,7 @@
   #include "../lcd/extui/ui_api.h"
 #endif
 
-//#define FILAMENT_RUNOUT_SENSOR_DEBUG
+#define FILAMENT_RUNOUT_SENSOR_DEBUG
 #ifndef FILAMENT_RUNOUT_THRESHOLD
   #define FILAMENT_RUNOUT_THRESHOLD 5
 #endif
@@ -115,7 +115,12 @@ class TFilamentMonitor : public FilamentMonitorBase {
 
     // Give the response a chance to update its counter.
     static inline void run() {
+      // SERIAL_ECHOLNPGM("Entered runout.run func");
+      // SERIAL_ECHOLNPAIR("Enabled condition: ", enabled);
+      // SERIAL_ECHOLNPAIR("Filament ran out condition: ", !filament_ran_out);
+      // SERIAL_ECHOLNPAIR("Printing active condition: ", (printingIsActive() || did_pause_print));
       if (enabled && !filament_ran_out && (printingIsActive() || did_pause_print)) {
+        // SERIAL_ECHOLNPGM("Conditions all satisfied");
         TERN_(HAS_FILAMENT_RUNOUT_DISTANCE, cli()); // Prevent RunoutResponseDelayed::block_completed from accumulating here
         response.run();
         sensor.run();
@@ -153,6 +158,7 @@ class TFilamentMonitor : public FilamentMonitorBase {
 
         if (ran_out) {
           filament_ran_out = true;
+          SERIAL_ECHOLNPGM("event_filament_runout called");
           event_filament_runout(extruder);
           planner.synchronize();
         }

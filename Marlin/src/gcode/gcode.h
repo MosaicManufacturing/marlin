@@ -941,6 +941,9 @@ private:
     static void M603();
   #endif
 
+  static void M601();
+  static void M602();
+
   #if ENABLED(HAS_DUPLICATION_MODE)
     static void M605();
   #endif

@@ -71,6 +71,8 @@ bool FilamentMonitorBase::enabled = true,
 #endif
 
 void event_filament_runout(const uint8_t extruder) {
+  
+  SERIAL_ECHOLNPGM("EVENT DETECTED");
 
   if (did_pause_print) return;  // Action already in progress. Purge triggered repeated runout.
 
@@ -137,6 +139,7 @@ void event_filament_runout(const uint8_t extruder) {
         SERIAL_ECHOPGM("Runout Command: ");
         SERIAL_ECHOLNPGM(FILAMENT_RUNOUT_SCRIPT);
       #endif
+      SERIAL_ECHOLNPGM("Reached queue.inject");
       queue.inject_P(PSTR(FILAMENT_RUNOUT_SCRIPT));
     #endif
   }
