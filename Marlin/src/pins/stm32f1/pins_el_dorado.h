@@ -55,12 +55,13 @@
 //
 #define X_STOP_PIN                          -1   //!No limit switches
 #define Y_STOP_PIN                          -1   //!No limit switches
-#define Z_STOP_PIN                          PB1   
+//#define Z_STOP_PIN                          PB1
+#define Z_STOP_PIN                          PC15
 
 //
 // Z Probe must be this pin
 //
-#define Z_MIN_PROBE_PIN                     Z_STOP_PIN  // PROBE 
+#define Z_MIN_PROBE_PIN                     Z_STOP_PIN  // PROBE
 
 //
 // Filament Runout Sensor
@@ -102,48 +103,48 @@
 
 //
 // Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
-//
-// #define TEMP_0_PIN                          PA5   // Analog Input "NOZ_THERM"
-// #define TEMP_BED_PIN                        PC4   // Analog Input "BED_THERM" 
-// #define TEMP_CHAMBER_PIN                    PA6   // Analog Input "CH1_THERM" //! PA6 is confirmed to correspond to thermistor above printhead pcb
-// #define TEMP_1_PIN                          PA7   // Analog Input "CH2_THERM" 
+
+#define TEMP_0_PIN                          PA5   // Analog Input "NOZ_THERM"
+#define TEMP_BED_PIN                        PC4   // Analog Input "BED_THERM"
+#define TEMP_CHAMBER_PIN                    PA6   // Analog Input "CH1_THERM" //! PA6 is confirmed to correspond to thermistor above printhead pcb
+#define TEMP_1_PIN                          PA7   // Analog Input "CH2_THERM"
 
 //? Test values
-#define TEMP_1_PIN                          PA5   // Analog Input "NOZ_THERM"
-#define TEMP_BED_PIN                        PC4   // Analog Input "BED_THERM" 
-#define TEMP_CHAMBER_PIN                    PA6   // Analog Input "CH1_THERM" //! PA6 is confirmed to correspond to thermistor above printhead pcb
-#define TEMP_0_PIN                          PA7   // Analog Input "CH2_THERM"
+//#define TEMP_1_PIN                          PA5   // Analog Input "NOZ_THERM"
+//#define TEMP_BED_PIN                        PC4   // Analog Input "BED_THERM"
+//#define TEMP_CHAMBER_PIN                    PA6   // Analog Input "CH1_THERM" //! PA6 is confirmed to correspond to thermistor above printhead pcb
+//#define TEMP_0_PIN                          PA7   // Analog Input "CH2_THERM"
 
 //
 // Heaters / Fans //!Currently assuming ch1 is chamber and ch2 is coldend
 //
-#define HEATER_0_PIN                        PA3   // "HOTEND_HEAT" 
+#define HEATER_0_PIN                        PA3   // "HOTEND_HEAT"
 #define HEATER_BED_PIN                      PA2   // "BED_HEAT"
-#define HEATER_CHAMBER_PIN                  PD0   // "CH1_HEAT" 
-#define HEATER_1_PIN                        PD1   // "CH2_HEAT" 
+#define HEATER_CHAMBER_PIN                  PD0   // "CH1_HEAT"
+#define HEATER_1_PIN                        PD1   // "CH2_HEAT"
 
 //?These settings are just to test if hotend signal will turn on led, not in final build, delete after!
-// #define HEATER_0_PIN                        PD0   // "HOTEND_HEAT" 
-// #define CASE_LIGHT_PIN                  PA3   // "CH1_HEAT" 
-// #define HEATER_1_PIN                        PD1   // "CH2_HEAT" 
+// #define HEATER_0_PIN                        PD0   // "HOTEND_HEAT"
+// #define CASE_LIGHT_PIN                  PA3   // "CH1_HEAT"
+// #define HEATER_1_PIN                        PD1   // "CH2_HEAT"
 // #define HEATER_BED_PIN                      PA2   // "BED_HEAT"
 
 //!FAN_PIN corresponds to FAN_1, FAN1_PIN corresponds to FAN_2 and etc.
-// #define FAN_PIN                           PE11   // "FAN_1"
-#define FAN1_PIN                          PE10   // "FAN_2" 
-// #define FAN2_PIN                          PE9    // "FAN_3" 
-// #define FAN3_PIN                          PE8    // "FAN_4" 
-// #define FAN4_PIN                          PE7    // "FAN_5" 
-// #define FAN5_PIN                          PC12   // "FAN_6" 
-// #define FAN6_PIN                          PC11   // "FAN_7" 
-// #define FAN7_PIN                          PC10   // "FAN_8" 
+#define FAN_PIN                           PE11   // "FAN_1"
+#define FAN1_PIN                          PE10   // "FAN_2"
+// #define FAN2_PIN                          PE9    // "FAN_3"
+// #define FAN3_PIN                          PE8    // "FAN_4"
+// #define FAN4_PIN                          PE7    // "FAN_5"
+// #define FAN5_PIN                          PC12   // "FAN_6"
+// #define FAN6_PIN                          PC11   // "FAN_7"
+// #define FAN7_PIN                          PC10   // "FAN_8"
 
 //
-// Miscellaneous 
+// Miscellaneous
 //
 //TODO: Add door pins to pinsDebug_list and pins_postprocess(?)
-// #define DOOR1_PIN                         PC14   // "DOOR_1" 
-// #define DOOR2_PIN                         PC15   // "DOOR_2" 
+// #define DOOR1_PIN                         PC14   // "DOOR_1"
+// #define DOOR2_PIN                         PC15   // "DOOR_2"
 
 // #define PURGE_PIN                         PC13   // "PURGE"
 
