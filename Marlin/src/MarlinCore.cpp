@@ -1526,6 +1526,8 @@ void setup() {
  *    as long as idle() or manage_inactivity() are being called.
  */
 void loop() {
+  pinMode(PA4, INPUT_PULLUP);
+
   do {
     idle();
 
