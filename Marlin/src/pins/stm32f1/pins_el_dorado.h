@@ -130,8 +130,8 @@
 // #define HEATER_BED_PIN                      PA2   // "BED_HEAT"
 
 //!FAN_PIN corresponds to FAN_1, FAN1_PIN corresponds to FAN_2 and etc.
-#define FAN_PIN                           PE10   // "FAN_1"
-#define FAN1_PIN                          PE11   // "FAN_2"
+#define FAN_PIN                           PE10   // "FAN_2"
+#define FAN1_PIN                          PE11   // "FAN_1"
 // #define FAN2_PIN                          PE9    // "FAN_3"
 // #define FAN3_PIN                          PE8    // "FAN_4"
 // #define FAN4_PIN                          PE7    // "FAN_5"
@@ -165,5 +165,3 @@
 // #ifndef PS_ON_PIN
 //   #define PS_ON_PIN                        PC13  // Power Supply Control
 // #endif
-
-
