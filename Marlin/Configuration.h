@@ -429,7 +429,7 @@
  */
 //! 21 -> PT100 high temp thermistors with our amplifier board setup
 //! 11 -> NTC3950 low temp thermistors 
-#define TEMP_SENSOR_0 21
+#define TEMP_SENSOR_0 11
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
