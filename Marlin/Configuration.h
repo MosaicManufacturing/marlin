@@ -427,6 +427,8 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
+//! 21 -> PT100 high temp thermistors with our amplifier board setup
+//! 11 -> NTC3950 low temp thermistors 
 #define TEMP_SENSOR_0 21
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
