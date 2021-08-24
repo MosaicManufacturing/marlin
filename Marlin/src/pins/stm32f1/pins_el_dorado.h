@@ -73,23 +73,24 @@
 //
 // Diag Pins
 //
-#define X_DIAG_PIN                          PD13  // "X_DIAG"
-#define Y_DIAG_PIN                          PD11  // "Y_DIAG"
+#define Y_DIAG_PIN                          PD13  // "X_DIAG"
+#define X_DIAG_PIN                          PD11  // "Y_DIAG"
 #define Z_DIAG_PIN                          PE13  // "Z_DIAG"
 #define E0_DIAG_PIN                         PC8   // "E_DIAG"
 
 //
 // Steppers
 //
-#define X_ENABLE_PIN                        PD14  // "X_EN"
-#define X_STEP_PIN                          PC6   // "X_STEP"
-#define X_DIR_PIN                           PD15  // "X_DIR"
-#define X_CS_PIN                            PC7   // "X_nCS"
+//! X and Y pins were switched to avoid crossing wires in electronics box
+#define Y_ENABLE_PIN                        PD14  // "X_EN"
+#define Y_STEP_PIN                          PC6   // "X_STEP"
+#define Y_DIR_PIN                           PD15  // "X_DIR"
+#define Y_CS_PIN                            PC7   // "X_nCS"
 
-#define Y_ENABLE_PIN                        PD10  // "Y_EN"
-#define Y_STEP_PIN                          PD8   // "Y_STEP"
-#define Y_DIR_PIN                           PD9   // "Y_DIR"
-#define Y_CS_PIN                            PD12  // "Y_nCS"
+#define X_ENABLE_PIN                        PD10  // "Y_EN"
+#define X_STEP_PIN                          PD8   // "Y_STEP"
+#define X_DIR_PIN                           PD9   // "Y_DIR"
+#define X_CS_PIN                            PD12  // "Y_nCS"
 
 #define Z_ENABLE_PIN                        PE12  // "Z_EN"
 #define Z_STEP_PIN                          PE14  // "Z_STEP"
