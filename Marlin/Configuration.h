@@ -494,7 +494,7 @@
 #define HEATER_6_MAXTEMP 275
 #define HEATER_7_MAXTEMP 275
 #define BED_MAXTEMP 180
-#define CHAMBER_MAXTEMP 60
+#define CHAMBER_MAXTEMP 170
 
 /**
  * Thermal Overshoot
