@@ -428,7 +428,7 @@
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
 //! 21 -> PT100 high temp thermistors with our amplifier board setup
-//! 11 -> NTC3950 low temp thermistors 
+//! 11 -> NTC3950 low temp thermistors
 #define TEMP_SENSOR_0 21
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
@@ -1498,7 +1498,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
 // Set the number of grid points per dimension.
-#define GRID_MAX_POINTS_X 6
+#define GRID_MAX_POINTS_X 5
 #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
 // Probe along the Y axis, advancing X after each column
