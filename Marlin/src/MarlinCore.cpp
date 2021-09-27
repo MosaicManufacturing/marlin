@@ -1528,6 +1528,8 @@ void setup() {
 void loop() {
   pinMode(PA4, INPUT_PULLUP);
 
+  // printf("Printhead fixed side thermistor: " );
+
   do {
     idle();
 

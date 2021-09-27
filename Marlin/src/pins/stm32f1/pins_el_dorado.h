@@ -102,6 +102,11 @@
 #define E0_DIR_PIN                          PA8   // "E_DIR"
 #define E0_CS_PIN                           PA12  // "E_nCS"
 
+// Fake extruder to enable additonal thermistor
+#define E1_ENABLE_PIN                       PD4   
+#define E1_STEP_PIN                         PD5  
+#define E1_DIR_PIN                          PD6   
+
 //
 // Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
 
