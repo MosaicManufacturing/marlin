@@ -428,7 +428,7 @@
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
 //! 21 -> PT100 high temp thermistors with our amplifier board setup
-//! 11 -> NTC3950 low temp thermistors 
+//! 11 -> NTC3950 low temp thermistors
 #define TEMP_SENSOR_0 21
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
@@ -494,7 +494,7 @@
 #define HEATER_6_MAXTEMP 275
 #define HEATER_7_MAXTEMP 275
 #define BED_MAXTEMP 180
-#define CHAMBER_MAXTEMP 60
+#define CHAMBER_MAXTEMP 170
 
 /**
  * Thermal Overshoot
