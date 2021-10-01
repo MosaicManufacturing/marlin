@@ -141,7 +141,7 @@
 
 // This defines the number of extruders
 // :[0, 1, 2, 3, 4, 5, 6, 7, 8]
-#define EXTRUDERS 1
+#define EXTRUDERS 2
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
@@ -834,7 +834,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT \
   {                                 \
-    200, 200, 2560, 355.02          \
+    200, 200, 2560, 291.83          \
   }
 
 /**
@@ -1112,10 +1112,10 @@
 #define XY_PROBE_FEEDRATE 8000
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_FEEDRATE_FAST 60
+#define Z_PROBE_FEEDRATE_FAST 240
 
 // Feedrate (mm/min) for the "accurate" probe of each point
-#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
+#define Z_PROBE_FEEDRATE_SLOW Z_PROBE_FEEDRATE_FAST
 
 /**
  * Probe Activation Switch
@@ -1639,7 +1639,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing.
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
 #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2) // X point for Z homing
