@@ -430,13 +430,16 @@
 //! 21 -> PT100 high temp thermistors with our amplifier board setup
 //! 11 -> NTC3950 low temp thermistors
 #define TEMP_SENSOR_0 21
-#define TEMP_SENSOR_1 0
+#define TEMP_SENSOR_1 1
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
+// For Beryllium 11 with new bed thermistor
+//#define TEMP_SENSOR_BED 1000
+// For Beryllium 7,8,9,10,12 with original bed thermistor
 #define TEMP_SENSOR_BED 1
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 11
@@ -457,7 +460,7 @@
 //#define TEMP_SENSOR_1_AS_REDUNDANT
 #define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
-#define TEMP_RESIDENCY_TIME 10 // (seconds) Time to wait for hotend to "settle" in M109
+#define TEMP_RESIDENCY_TIME 30 // (seconds) Time to wait for hotend to "settle" in M109
 #define TEMP_WINDOW 1          // (°C) Temperature proximity for the "temperature reached" timer
 #define TEMP_HYSTERESIS 3      // (°C) Temperature proximity considered "close enough" to the target
 
@@ -539,9 +542,9 @@
     114.00, 114.00      \
   }
 #else
-#define DEFAULT_Kp 21.70
-#define DEFAULT_Ki 1.33
-#define DEFAULT_Kd 88.44
+#define DEFAULT_Kp 12.34
+#define DEFAULT_Ki 0.78
+#define DEFAULT_Kd 48.98
 #endif
 #endif // PIDTEMP
 
@@ -580,9 +583,10 @@
 
 // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-#define DEFAULT_bedKp 822.13
-#define DEFAULT_bedKi 130.33
-#define DEFAULT_bedKd 1296.51
+#define DEFAULT_bedKp 15.11
+#define DEFAULT_bedKi 2.62
+#define DEFAULT_bedKd 58.14
+
 
 // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED

@@ -103,8 +103,8 @@
 
 #if TEMP_SENSOR_BED == 1000
 #define BED_PULLUP_RESISTOR_OHMS 4700  // Pullup resistor
-#define BED_RESISTANCE_25C_OHMS 100000 // Resistance at 25C
-#define BED_BETA 3950                  // Beta value
+#define BED_RESISTANCE_25C_OHMS 20000 // Resistance at 25C
+#define BED_BETA 3892                  // Beta value
 #endif
 
 #if TEMP_SENSOR_CHAMBER == 1000
@@ -286,7 +286,7 @@
 /**
    * Heated chamber watch settings (M141/M191).
    */
-#define WATCH_CHAMBER_TEMP_PERIOD 60  // Seconds
+#define WATCH_CHAMBER_TEMP_PERIOD 3600  // Seconds
 #define WATCH_CHAMBER_TEMP_INCREASE 2 // Degrees Celsius
 #endif
 
