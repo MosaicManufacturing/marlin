@@ -102,13 +102,17 @@
 #define E0_DIR_PIN                          PA8   // "E_DIR"
 #define E0_CS_PIN                           PA12  // "E_nCS"
 
+#define E1_ENABLE_PIN                       PD4   
+#define E1_STEP_PIN                         PD5  
+#define E1_DIR_PIN                          PD6
+
 //
 // Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
 
 #define TEMP_0_PIN                          PA5   // Analog Input "NOZ_THERM"
 #define TEMP_BED_PIN                        PC4   // Analog Input "BED_THERM"
-#define TEMP_CHAMBER_PIN                    PA6   // Analog Input "CH1_THERM" //! PA6 is confirmed to correspond to thermistor above printhead pcb
-#define TEMP_1_PIN                          PA7   // Analog Input "CH2_THERM"
+#define TEMP_1_PIN                          PA6   // Analog Input "CH1_THERM" //! PA6 is confirmed to correspond to thermistor above printhead pcb
+#define TEMP_CHAMBER_PIN                    PA7   // Analog Input "CH2_THERM" //! PA7 runs to the cold end thermistor, will for now run to the heater chamber thermistor
 
 //? Test values
 //#define TEMP_1_PIN                          PA5   // Analog Input "NOZ_THERM"
@@ -131,14 +135,17 @@
 // #define HEATER_BED_PIN                      PA2   // "BED_HEAT"
 
 //!FAN_PIN corresponds to FAN_1, FAN1_PIN corresponds to FAN_2 and etc.
+//These two are the extruder heat sink and part cooling fan
 #define FAN_PIN                           PE10   // "FAN_2"
 #define FAN1_PIN                          PE11   // "FAN_1"
-// #define FAN2_PIN                          PE9    // "FAN_3"
-// #define FAN3_PIN                          PE8    // "FAN_4"
-// #define FAN4_PIN                          PE7    // "FAN_5"
-// #define FAN5_PIN                          PC12   // "FAN_6"
-// #define FAN6_PIN                          PC11   // "FAN_7"
-// #define FAN7_PIN                          PC10   // "FAN_8"
+
+//Remaining are the rest of the fans including the Hepa, heater, and electronics box fans
+// #define FAN2_PIN                          PE9    // "FAN_3"  -> pin 73   //!Use this as HEATER fan, MIGHT BE BROKEN
+// #define FAN3_PIN                          PE8    // "FAN_4"  -> pin 72   //!Now using this as HEATER fan
+// #define FAN4_PIN                          PE7    // "FAN_5"  -> pin 71   //!Use this as HEPA fan 
+// #define FAN5_PIN                          PC12   // "FAN_6"  -> pin 44   //!Use this as electronics box fan 1
+// #define FAN6_PIN                          PC11   // "FAN_7"  -> pin 43   //!Use this as electronics box fan 2
+// #define FAN7_PIN                          PC10   // "FAN_8"  -> pin 42
 
 //
 // Miscellaneous
