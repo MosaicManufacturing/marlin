@@ -141,7 +141,7 @@
 
 // This defines the number of extruders
 // :[0, 1, 2, 3, 4, 5, 6, 7, 8]
-#define EXTRUDERS 1
+#define EXTRUDERS 2
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
 #define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
@@ -428,15 +428,18 @@
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
 //! 21 -> PT100 high temp thermistors with our amplifier board setup
-//! 11 -> NTC3950 low temp thermistors 
+//! 11 -> NTC3950 low temp thermistors
 #define TEMP_SENSOR_0 21
-#define TEMP_SENSOR_1 0
+#define TEMP_SENSOR_1 1
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
+// For Beryllium 11 with new bed thermistor
+//#define TEMP_SENSOR_BED 1000
+// For Beryllium 7,8,9,10,12 with original bed thermistor
 #define TEMP_SENSOR_BED 1
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 11
@@ -457,7 +460,7 @@
 //#define TEMP_SENSOR_1_AS_REDUNDANT
 #define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
-#define TEMP_RESIDENCY_TIME 10 // (seconds) Time to wait for hotend to "settle" in M109
+#define TEMP_RESIDENCY_TIME 30 // (seconds) Time to wait for hotend to "settle" in M109
 #define TEMP_WINDOW 1          // (°C) Temperature proximity for the "temperature reached" timer
 #define TEMP_HYSTERESIS 3      // (°C) Temperature proximity considered "close enough" to the target
 
@@ -494,7 +497,7 @@
 #define HEATER_6_MAXTEMP 275
 #define HEATER_7_MAXTEMP 275
 #define BED_MAXTEMP 180
-#define CHAMBER_MAXTEMP 60
+#define CHAMBER_MAXTEMP 170
 
 /**
  * Thermal Overshoot
@@ -539,9 +542,9 @@
     114.00, 114.00      \
   }
 #else
-#define DEFAULT_Kp 21.70
-#define DEFAULT_Ki 1.33
-#define DEFAULT_Kd 88.44
+#define DEFAULT_Kp 22.15
+#define DEFAULT_Ki 2.09
+#define DEFAULT_Kd 58.62
 #endif
 #endif // PIDTEMP
 
@@ -580,9 +583,10 @@
 
 // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-#define DEFAULT_bedKp 822.13
-#define DEFAULT_bedKi 130.33
-#define DEFAULT_bedKd 1296.51
+#define DEFAULT_bedKp 15.11
+#define DEFAULT_bedKi 2.62
+#define DEFAULT_bedKd 58.14
+
 
 // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -1108,10 +1112,10 @@
 #define XY_PROBE_FEEDRATE 8000
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_FEEDRATE_FAST 60
+#define Z_PROBE_FEEDRATE_FAST 240
 
 // Feedrate (mm/min) for the "accurate" probe of each point
-#define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
+#define Z_PROBE_FEEDRATE_SLOW Z_PROBE_FEEDRATE_FAST
 
 /**
  * Probe Activation Switch
@@ -1498,7 +1502,7 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
 // Set the number of grid points per dimension.
-#define GRID_MAX_POINTS_X 6
+#define GRID_MAX_POINTS_X 5
 #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
 // Probe along the Y axis, advancing X after each column
@@ -1635,7 +1639,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing.
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
 #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2) // X point for Z homing

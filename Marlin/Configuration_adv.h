@@ -103,8 +103,8 @@
 
 #if TEMP_SENSOR_BED == 1000
 #define BED_PULLUP_RESISTOR_OHMS 4700  // Pullup resistor
-#define BED_RESISTANCE_25C_OHMS 100000 // Resistance at 25C
-#define BED_BETA 3950                  // Beta value
+#define BED_RESISTANCE_25C_OHMS 20000 // Resistance at 25C
+#define BED_BETA 3892                  // Beta value
 #endif
 
 #if TEMP_SENSOR_CHAMBER == 1000
@@ -286,7 +286,7 @@
 /**
    * Heated chamber watch settings (M141/M191).
    */
-#define WATCH_CHAMBER_TEMP_PERIOD 60  // Seconds
+#define WATCH_CHAMBER_TEMP_PERIOD 3600  // Seconds
 #define WATCH_CHAMBER_TEMP_INCREASE 2 // Degrees Celsius
 #endif
 
@@ -1876,7 +1876,7 @@
 #define LIN_ADVANCE
 #if ENABLED(LIN_ADVANCE)
 //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
-#define LIN_ADVANCE_K 0.22 // Unit: mm compression per 1mm/s extruder speed
+#define LIN_ADVANCE_K 0.03 // Unit: mm compression per 1mm/s extruder speed
                            //#define LA_DEBUG            // If enabled, this will generate debug information output over USB.
                            //#define EXPERIMENTAL_SCURVE // Enable this option to permit S-Curve Acceleration
 #endif
@@ -2609,7 +2609,7 @@
 #endif
 
 #if AXIS_IS_TMC(E0)
-#define E0_CURRENT 800
+#define E0_CURRENT 1000
 #define E0_MICROSTEPS 16
 #define E0_RSENSE 0.11
 #define E0_CHAIN_POS -1
@@ -2744,8 +2744,8 @@
    * Use Trinamic's ultra quiet stepping mode.
    * When disabled, Marlin will use spreadCycle stepping mode.
    */
-#define STEALTHCHOP_XY
-#define STEALTHCHOP_Z
+//#define STEALTHCHOP_XY
+//#define STEALTHCHOP_Z
 #define STEALTHCHOP_E
 
 /**
