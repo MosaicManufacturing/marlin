@@ -1527,6 +1527,8 @@ void setup() {
  */
 void loop() {
   pinMode(PA4, INPUT_PULLUP);
+  pinMode(PC2, OUTPUT);
+  digitalWrite(PC2, HIGH);
 
   // printf("Printhead fixed side thermistor: " );
 
