@@ -102,9 +102,10 @@
 #define E0_DIR_PIN                          PA8   // "E_DIR"
 #define E0_CS_PIN                           PA12  // "E_nCS"
 
+// Fake extruder to enable additonal thermistor
 #define E1_ENABLE_PIN                       PD4   
 #define E1_STEP_PIN                         PD5  
-#define E1_DIR_PIN                          PD6
+#define E1_DIR_PIN                          PD6   
 
 //
 // Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
@@ -136,7 +137,7 @@
 
 //!FAN_PIN corresponds to FAN_1, FAN1_PIN corresponds to FAN_2 and etc.
 //These two are the extruder heat sink and part cooling fan
-#define FAN_PIN                           PE10   // "FAN_2"
+#define FAN_PIN                           PC12   // "FAN_2"
 #define FAN1_PIN                          PE11   // "FAN_1"
 
 //Remaining are the rest of the fans including the Hepa, heater, and electronics box fans
