@@ -1526,10 +1526,39 @@ void setup() {
  *    as long as idle() or manage_inactivity() are being called.
  */
 void loop() {
-  pinMode(PA4, INPUT_PULLUP);
-  pinMode(PC2, OUTPUT);
-  digitalWrite(PC2, HIGH);
+  // Jonathans Beryllium pin setup
+  //pinMode(PA4, INPUT_PULLUP);
+  //pinMode(PC2, OUTPUT);
+  ///digitalWrite(PC2, HIGH);
+  //set all MSx Bits to low to have all UART on independant 0 comm lines (should already defaul to low due to internal pulldown)
+  pinMode(PD5, OUTPUT);
+  pinMode(PD6, OUTPUT);
+  pinMode(PD12, OUTPUT);
+  pinMode(PD13, OUTPUT);
+  pinMode(PB12, OUTPUT);
+  pinMode(PB13, OUTPUT);
+  pinMode(PA12, OUTPUT);
+  pinMode(PA15, OUTPUT);
+  pinMode(PE8, INPUT_PULLUP);
+  // forcing spread pins high to lock in 'spreadcycle' mode for homing. UART should control this?
+  pinMode(PD14, OUTPUT); // z_spread
+  pinMode(PB6, OUTPUT); // x_spread
+  pinMode(PB14, OUTPUT); // Y_spread
+  pinMode(PC13, OUTPUT); // E_spread
 
+
+  digitalWrite(PD5, LOW); //X_MS2
+  digitalWrite(PD6, LOW); //X_MS1
+  digitalWrite(PD12, LOW); //Z_MS2
+  digitalWrite(PD13, LOW); //Z_MS1
+  digitalWrite(PB12, LOW); //Y_MS2
+  digitalWrite(PB13, LOW);  //Y_MS1
+  digitalWrite(PA12, LOW); // E_MS2
+  digitalWrite(PA15, LOW); // E_MS1
+  digitalWrite(PD14, HIGH);
+  digitalWrite(PB6, HIGH);
+  digitalWrite(PB14, HIGH);
+  digitalWrite(PC13, HIGH);
   // printf("Printhead fixed side thermistor: " );
 
   do {

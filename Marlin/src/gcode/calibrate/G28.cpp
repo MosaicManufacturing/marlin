@@ -234,17 +234,20 @@ void GcodeSuite::G28() {
 
   TERN_(DWIN_CREALITY_LCD, DWIN_StartHoming());
   TERN_(EXTENSIBLE_UI, ExtUI::onHomingStart());
-
+  SERIAL_ECHOLNPGM("BeforeSync");
   planner.synchronize();          // Wait for planner moves to finish!
-
+  SERIAL_ECHOLNPGM("AfterSync");
   SET_SOFT_ENDSTOP_LOOSE(false);  // Reset a leftover 'loose' motion state
 
   // Disable the leveling matrix before homing
+  SERIAL_ECHOLNPGM("before levelling");
   #if HAS_LEVELING
+    SERIAL_ECHOLNPGM("in levelling");
     const bool leveling_restore_state = parser.boolval('L', TERN(RESTORE_LEVELING_AFTER_G28, planner.leveling_active, ENABLED(ENABLE_LEVELING_AFTER_G28)));
     IF_ENABLED(PROBE_MANUALLY, g29_in_progress = false); // Cancel the active G29 session
     set_bed_leveling_enabled(false);
   #endif
+  SERIAL_ECHOLNPGM("after levelling");
 
   // Reset to the XY plane
   TERN_(CNC_WORKSPACE_PLANES, workspace_plane = PLANE_XY);
@@ -348,6 +351,7 @@ void GcodeSuite::G28() {
     #endif
 
     // Home Y (before X)
+    SERIAL_ECHOLNPGM("beforehoming Happens");
     if (ENABLED(HOME_Y_BEFORE_X) && (doY || TERN0(CODEPENDENT_XY_HOMING, doX)))
       homeaxis(Y_AXIS);
 
@@ -371,20 +375,24 @@ void GcodeSuite::G28() {
         idex_set_parked();
 
       #else
-
+        SERIAL_ECHOLNPGM("HomeXStart");
         homeaxis(X_AXIS);
+        SERIAL_ECHOLNPGM("HomeXEnd");
 
       #endif
     }
 
     // Home Y (after X)
     if (DISABLED(HOME_Y_BEFORE_X) && doY)
+      SERIAL_ECHOLNPGM("HomeYStart");
       homeaxis(Y_AXIS);
+      SERIAL_ECHOLNPGM("HomeYEnd");
 
     TERN_(IMPROVE_HOMING_RELIABILITY, end_slow_homing(slow_homing));
 
     // Home Z last if homing towards the bed
     #if DISABLED(HOME_Z_FIRST)
+      SERIAL_ECHOLNPGM("HomeZStart");
       if (doZ) {
         #if EITHER(Z_MULTI_ENDSTOPS, Z_STEPPER_AUTO_ALIGN)
           stepper.set_all_z_lock(false);

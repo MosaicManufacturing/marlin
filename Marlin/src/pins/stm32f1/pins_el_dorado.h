@@ -56,7 +56,7 @@
 #define X_STOP_PIN                          -1   //!No limit switches
 #define Y_STOP_PIN                          -1   //!No limit switches
 //#define Z_STOP_PIN                          PB1
-#define Z_STOP_PIN                          PC15
+#define Z_STOP_PIN                          PE8
 
 //
 // Z Probe must be this pin
@@ -66,54 +66,83 @@
 //
 // Filament Runout Sensor
 //
-#ifndef FIL_RUNOUT_PIN
-  #define FIL_RUNOUT_PIN                    PA1  // "FIL_SW"
-#endif
+//#ifndef FIL_RUNOUT_PIN
+//  #define FIL_RUNOUT_PIN                    PA1  // "FIL_SW" No Connection
+//#endif
 
 //
 // Diag Pins
 //
-#define Y_DIAG_PIN                          PD13  // "X_DIAG"
-#define X_DIAG_PIN                          PD11  // "Y_DIAG"
-#define Z_DIAG_PIN                          PE13  // "Z_DIAG"
-#define E0_DIAG_PIN                         PC8   // "E_DIAG"
+#define Y_DIAG_PIN                          PE15  // PD13  // "Y_DIAG"
+#define X_DIAG_PIN                          PD4   // PD11  // "X_DIAG"
+#define Z_DIAG_PIN                          PD11  // PE13  // "Z_DIAG"
+#define E0_DIAG_PIN                         PA11  // PC8   // "E_DIAG"
 
 //
 // Steppers
 //
-//! X and Y pins were switched to avoid crossing wires in electronics box
-#define Y_ENABLE_PIN                        PD14  // "X_EN"
-#define Y_STEP_PIN                          PC6   // "X_STEP"
-#define Y_DIR_PIN                           PD15  // "X_DIR"
-#define Y_CS_PIN                            PC7   // "X_nCS"
+//! X and Y pins were switched to avoid crossing wires in electronics box for Boron
+// For EVT1 X and Y pins returned back
 
-#define X_ENABLE_PIN                        PD10  // "Y_EN"
-#define X_STEP_PIN                          PD8   // "Y_STEP"
-#define X_DIR_PIN                           PD9   // "Y_DIR"
-#define X_CS_PIN                            PD12  // "Y_nCS"
+/*
+#define X_ENABLE_PIN                        PB15  // "X_EN"
+#define X_STEP_PIN                          PE12  // "X_STEP"
+#define X_DIR_PIN                           PE11  // "X_DIR"
+#define X_SERIAL_RX_PIN                     PB11  // Y_UART
+#define X_SERIAL_TX_PIN                     PB10  // Y_UART w/10k resistor
+//#define Y_CS_PIN                               // "X_nCS"
 
-#define Z_ENABLE_PIN                        PE12  // "Z_EN"
-#define Z_STEP_PIN                          PE14  // "Z_STEP"
-#define Z_DIR_PIN                           PE15  // "Z_DIR"
-#define Z_CS_PIN                            PB12  // "Z_nCS"
+#define Y_ENABLE_PIN                        PB7  // "Y_EN"
+#define Y_STEP_PIN                          PD1   // "Y_STEP"
+#define Y_DIR_PIN                           PD0   // "Y_DIR"
+#define Y_SERIAL_RX_PIN                     PD2  // X_UART
+#define Y_SERIAL_TX_PIN                     PC12  // X_UART w/10k resistor
+//#define X_CS_PIN                              // "Y_nCS" No longer using chip select for new drivers
+*/
 
-#define E0_ENABLE_PIN                       PC9   // "E_EN"
-#define E0_STEP_PIN                         PA11  // "E_STEP"
-#define E0_DIR_PIN                          PA8   // "E_DIR"
-#define E0_CS_PIN                           PA12  // "E_nCS"
+#define Y_ENABLE_PIN                        PB15  // "Y_EN"
+#define Y_STEP_PIN                          PE12  // "Y_STEP"
+#define Y_DIR_PIN                           PE11  // "Y_DIR"
+#define Y_SERIAL_RX_PIN                     PB11  // Y_UART
+#define Y_SERIAL_TX_PIN                     PB10  // Y_UART w/10k resistor
+//#define Y_CS_PIN                               // "X_nCS"
+
+#define X_ENABLE_PIN                        PB7  // "X_EN"
+#define X_STEP_PIN                          PD1   // "X_STEP"
+#define X_DIR_PIN                           PD0   // "X_DIR"
+#define X_SERIAL_RX_PIN                     PD2  // X_UART
+#define X_SERIAL_TX_PIN                     PC12  // X_UART w/10k resistor
+//#define X_CS_PIN                              // "Y_nCS" No longer using chip select for new drivers
+
+
+#define Z_ENABLE_PIN                        PD15   // "Z_EN"
+#define Z_STEP_PIN                          PD8   // "Z_STEP"
+#define Z_DIR_PIN                           PD9   // "Z_DIR"
+#define Z_SERIAL_RX_PIN                     PA3  // Z_UART
+#define Z_SERIAL_TX_PIN                     PA2  // Z_UART w/10k resistor
+//#define Z_CS_PIN                              // "Z_nCS"
+
+#define E0_ENABLE_PIN                       PC14   // "E_EN"
+#define E0_STEP_PIN                         PC8  // "E_STEP"
+#define E0_DIR_PIN                          PC7   // "E_DIR"
+#define E0_SERIAL_RX_PIN                     PC11  // E_UART
+#define E0_SERIAL_TX_PIN                     PC10  // E_UART w/10k resistor
+//#define E0_CS_PIN                             // "E_nCS"
+
 
 // Fake extruder to enable additonal thermistor
-#define E1_ENABLE_PIN                       PD4   
-#define E1_STEP_PIN                         PD5  
-#define E1_DIR_PIN                          PD6   
+//#define E1_ENABLE_PIN                       PC0   
+//#define E1_STEP_PIN                         PC1  
+//#define E1_DIR_PIN                          PC2   
 
 //
 // Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
 
-#define TEMP_0_PIN                          PA5   // Analog Input "NOZ_THERM"
-#define TEMP_BED_PIN                        PC4   // Analog Input "BED_THERM"
-#define TEMP_1_PIN                          PA6   // Analog Input "CH1_THERM" //! PA6 is confirmed to correspond to thermistor above printhead pcb
-#define TEMP_CHAMBER_PIN                    PA7   // Analog Input "CH2_THERM" //! PA7 runs to the cold end thermistor, will for now run to the heater chamber thermistor
+#define TEMP_0_PIN                          PC4   // Analog Input "NOZ_THERM"
+#define TEMP_BED_PIN                        PA6   // Analog Input "BED_THERM"
+//#define TEMP_1_PIN                            PA5 // Analog Input "CH_TH_MCU" //! PA6 is confirmed to correspond to thermistor above printhead pcb 
+#define TEMP_CHAMBER_PIN                    PA5   // Analog Input "CH_TH_MCU" this should run to the thermistor above printhead PCB
+              // Analog Input "CH2_THERM" //! PA7 runs to the cold end thermistor, will for now run to the heater chamber thermistor P
 
 //? Test values
 //#define TEMP_1_PIN                          PA5   // Analog Input "NOZ_THERM"
@@ -124,10 +153,10 @@
 //
 // Heaters / Fans //!Currently assuming ch1 is chamber and ch2 is coldend
 //
-#define HEATER_0_PIN                        PA3   // "HOTEND_HEAT"
-#define HEATER_BED_PIN                      PA2   // "BED_HEAT"
-#define HEATER_CHAMBER_PIN                  PD0   // "CH1_HEAT"
-#define HEATER_1_PIN                        PD1   // "CH2_HEAT"
+#define HEATER_0_PIN                        PA4   // "HOTEND_HEAT"
+#define HEATER_BED_PIN                      PB9   // "BED_HEAT"
+#define HEATER_CHAMBER_PIN                  PB8   // "CH1_HEAT"
+//#define HEATER_1_PIN                        PD1   // "CH2_HEAT"
 
 //?These settings are just to test if hotend signal will turn on led, not in final build, delete after!
 // #define HEATER_0_PIN                        PD0   // "HOTEND_HEAT"
@@ -137,8 +166,8 @@
 
 //!FAN_PIN corresponds to FAN_1, FAN1_PIN corresponds to FAN_2 and etc.
 //These two are the extruder heat sink and part cooling fan
-#define FAN_PIN                           PC12   // "FAN_2"
-#define FAN1_PIN                          PE11   // "FAN_1"
+#define FAN_PIN                           PE9   // "FAN_2" "FAN_HOT_MCU"
+//#define FAN1_PIN                          PE8   // "FAN_1" "FAN_PRINT_MCU"   -> 39
 
 //Remaining are the rest of the fans including the Hepa, heater, and electronics box fans
 // #define FAN2_PIN                          PE9    // "FAN_3"  -> pin 73   //!Use this as HEATER fan, MIGHT BE BROKEN
@@ -147,6 +176,14 @@
 // #define FAN5_PIN                          PC12   // "FAN_6"  -> pin 44   //!Use this as electronics box fan 1
 // #define FAN6_PIN                          PC11   // "FAN_7"  -> pin 43   //!Use this as electronics box fan 2
 // #define FAN7_PIN                          PC10   // "FAN_8"  -> pin 42
+
+// #define FAN2_PIN                          PE9    // "FAN_3"  -> pin 73   //!Use this as HEATER fan, MIGHT BE BROKEN
+// #define FAN3_PIN                          PE8    // "FAN_4"  -> pin 72   //!Now using this as HEATER fan
+// #define FAN4_PIN                          PE7    // "FAN_5"  -> pin 71   //!Use this as HEPA fan 
+// #define FAN5_PIN                          PC12   // "FAN_6"  -> pin 44   //!Use this as electronics box fan 1
+// #define FAN6_PIN                          PC11   // "FAN_7"  -> pin 43   //!Use this as electronics box fan 2
+// #define FAN7_PIN                          PC10   // "FAN_8"  -> pin 42
+
 
 //
 // Miscellaneous

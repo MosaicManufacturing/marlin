@@ -312,7 +312,7 @@ void set_axis_is_at_home(const AxisEnum axis);
   FORCE_INLINE void set_all_homed()                         { axis_homed = axis_trusted = xyz_bits; }
 #else
   constexpr uint8_t axis_homed = xyz_bits, axis_trusted = xyz_bits; // Zero-endstop machines are always homed and trusted
-  FORCE_INLINE void homeaxis(const AxisEnum axis)           {}
+  FORCE_INLINE void homeaxis(const AxisEnum axis)           {SERIAL_ECHOLNPGM("BIGBADHOMEAXIS")}
   FORCE_INLINE void set_axis_never_homed(const AxisEnum)    {}
   FORCE_INLINE uint8_t axes_should_home(uint8_t=0x07)       { return false; }
   FORCE_INLINE bool homing_needed_error(uint8_t=0x07)       { return false; }
