@@ -50,13 +50,7 @@
   #define MARLIN_EEPROM_SIZE    EEPROM_PAGE_SIZE  // 2KB
 #endif
 
-//
-// Limit Switches
-//
-#define X_STOP_PIN                          -1   //!No limit switches
-#define Y_STOP_PIN                          -1   //!No limit switches
-//#define Z_STOP_PIN                          PB1
-#define Z_STOP_PIN                          PE8
+
 
 //
 // Z Probe must be this pin
@@ -74,9 +68,21 @@
 // Diag Pins
 //
 #define Y_DIAG_PIN                          PE15  // PD13  // "Y_DIAG"
+//#define Y_MAX_PIN                           Y_DIAG_PIN
 #define X_DIAG_PIN                          PD4   // PD11  // "X_DIAG"
+//#define X_MAX_PIN                           X_DIAG_PIN
 #define Z_DIAG_PIN                          PD11  // PE13  // "Z_DIAG"
 #define E0_DIAG_PIN                         PA11  // PC8   // "E_DIAG"
+
+//
+// Limit Switches
+//
+#define X_MAX_PIN                          X_DIAG_PIN   //!No limit switches
+#define Y_MAX_PIN                          Y_DIAG_PIN //!No limit switches
+//#define Z_STOP_PIN                          PB1
+#define Z_STOP_PIN                          PE8
+
+//#define X_HARDWARE_SERIAL                  
 
 //
 // Steppers
@@ -99,35 +105,48 @@
 #define Y_SERIAL_TX_PIN                     PC12  // X_UART w/10k resistor
 //#define X_CS_PIN                              // "Y_nCS" No longer using chip select for new drivers
 */
+/*
+#define X_MS1_PIN                           PD6
+#define X_MS2_PIN                           PD5
+#define Y_MS1_PIN                           PB13
+#define Y_MS2_PIN                           PB12
+#define Z_MS1_PIN                           PD13
+#define Z_MS2_PIN                           PD12
+#define E_MS1_PIN                           PA15
+#define E_MS2_PIN                           PA12
+*/
 
 #define Y_ENABLE_PIN                        PB15  // "Y_EN"
 #define Y_STEP_PIN                          PE12  // "Y_STEP"
 #define Y_DIR_PIN                           PE11  // "Y_DIR"
-#define Y_SERIAL_RX_PIN                     PB11  // Y_UART
-#define Y_SERIAL_TX_PIN                     PB10  // Y_UART w/10k resistor
+//#define Y_SERIAL_RX_PIN                     PB11  // Y_UART
+//#define Y_SERIAL_TX_PIN                     PB10  // Y_UART w/10k resistor
 //#define Y_CS_PIN                               // "X_nCS"
+#define Y_HARDWARE_SERIAL                   MSerial3
 
 #define X_ENABLE_PIN                        PB7  // "X_EN"
 #define X_STEP_PIN                          PD1   // "X_STEP"
 #define X_DIR_PIN                           PD0   // "X_DIR"
-#define X_SERIAL_RX_PIN                     PD2  // X_UART
-#define X_SERIAL_TX_PIN                     PC12  // X_UART w/10k resistor
+//#define X_SERIAL_RX_PIN                     PD2  // X_UART
+//#define X_SERIAL_TX_PIN                     PC12  // X_UART w/10k resistor
 //#define X_CS_PIN                              // "Y_nCS" No longer using chip select for new drivers
-
+#define X_HARDWARE_SERIAL                   MSerial5
 
 #define Z_ENABLE_PIN                        PD15   // "Z_EN"
 #define Z_STEP_PIN                          PD8   // "Z_STEP"
 #define Z_DIR_PIN                           PD9   // "Z_DIR"
-#define Z_SERIAL_RX_PIN                     PA3  // Z_UART
-#define Z_SERIAL_TX_PIN                     PA2  // Z_UART w/10k resistor
+//#define Z_SERIAL_RX_PIN                     PA3  // Z_UART
+//#define Z_SERIAL_TX_PIN                     PA2  // Z_UART w/10k resistor
 //#define Z_CS_PIN                              // "Z_nCS"
+#define Z_HARDWARE_SERIAL                   MSerial2
 
 #define E0_ENABLE_PIN                       PC14   // "E_EN"
 #define E0_STEP_PIN                         PC8  // "E_STEP"
 #define E0_DIR_PIN                          PC7   // "E_DIR"
-#define E0_SERIAL_RX_PIN                     PC11  // E_UART
-#define E0_SERIAL_TX_PIN                     PC10  // E_UART w/10k resistor
+//#define E0_SERIAL_RX_PIN                     PC11  // E_UART
+//#define E0_SERIAL_TX_PIN                     PC10  // E_UART w/10k resistor
 //#define E0_CS_PIN                             // "E_nCS"
+#define E0_HARDWARE_SERIAL                   MSerial4
 
 
 // Fake extruder to enable additonal thermistor

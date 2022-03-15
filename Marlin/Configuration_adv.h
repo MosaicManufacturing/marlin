@@ -2715,15 +2715,15 @@
    * on the same serial port, either here or in your board's pins file.
    */
   // MS1 / MS2 both default Low.
-#define  X_SLAVE_ADDRESS 0
-#define  Y_SLAVE_ADDRESS 0
-#define  Z_SLAVE_ADDRESS 0
+#define  X_SLAVE_ADDRESS 3
+#define  Y_SLAVE_ADDRESS 3
+#define  Z_SLAVE_ADDRESS 3
 //#define X2_SLAVE_ADDRESS 0
 //#define Y2_SLAVE_ADDRESS 0
 //#define Z2_SLAVE_ADDRESS 0
 //#define Z3_SLAVE_ADDRESS 0
 //#define Z4_SLAVE_ADDRESS 0
-#define E0_SLAVE_ADDRESS 0
+#define E0_SLAVE_ADDRESS 3
 //#define E1_SLAVE_ADDRESS 0
 //#define E2_SLAVE_ADDRESS 0
 //#define E3_SLAVE_ADDRESS 0
