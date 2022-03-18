@@ -735,8 +735,8 @@
 //#define ENDSTOPPULLUP_ZMAX
 // #define ENDSTOPPULLUP_XMIN
 // #define ENDSTOPPULLUP_YMIN
-#define ENDSTOPPULLUP_ZMIN
-#define ENDSTOPPULLUP_ZMIN_PROBE
+//#define ENDSTOPPULLUP_ZMIN
+//#define ENDSTOPPULLUP_ZMIN_PROBE
 #endif
 
 // Enable pulldown for all endstops to prevent a floating state
@@ -1660,7 +1660,7 @@
 // Homing speeds (mm/min)
 #define HOMING_FEEDRATE_MM_M       \
   {                                \
-    (25 * 60)*3/5, (25 * 60)*3/5, (400) \
+    (30 * 60), (30 * 60), (400) \
   }
 
 // Validate that endstops are triggered on homing moves

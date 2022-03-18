@@ -1531,7 +1531,7 @@ void loop() {
   //pinMode(PC2, OUTPUT);
   ///digitalWrite(PC2, HIGH);
   //set all MSx Bits to low to have all UART on independant 0 comm lines (should already defaul to low due to internal pulldown)
-  pinMode(PE8, INPUT_PULLUP);
+  //pinMode(PA1, INPUT_PULLUP);
 
  // #ifdef HAL_UART_MODULE_ENABLED
  //   SERIAL_ECHOLNPGM("defined");
