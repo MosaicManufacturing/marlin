@@ -427,9 +427,11 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
+//! 1047 -> PT1000 high temp thermistor without amplifier
 //! 21 -> PT100 high temp thermistors with our amplifier board setup
 //! 11 -> NTC3950 low temp thermistors
-#define TEMP_SENSOR_0 11
+//THIS VERSION USES THE CHAMBER THERMISTOR SLOT FOR THE PRINTHEAD
+#define TEMP_SENSOR_0 1047
 #define TEMP_SENSOR_1 1
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -437,12 +439,12 @@
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
-// For Beryllium 11 with new bed thermistor
+// For Beryllium 11,9 with new bed thermistor use 1000
 //#define TEMP_SENSOR_BED 1000
-// For Beryllium 7,8,9,10,12 with original bed thermistor
-#define TEMP_SENSOR_BED 1
+// For Beryllium 7,8,9,10,12 with original bed thermistor use 1
+#define TEMP_SENSOR_BED 1000
 #define TEMP_SENSOR_PROBE 0
-#define TEMP_SENSOR_CHAMBER 11
+#define TEMP_SENSOR_CHAMBER 1047
 #define TEMP_SENSOR_COOLER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -460,7 +462,7 @@
 //#define TEMP_SENSOR_1_AS_REDUNDANT
 #define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
-#define TEMP_RESIDENCY_TIME 30 // (seconds) Time to wait for hotend to "settle" in M109
+#define TEMP_RESIDENCY_TIME 10 // (seconds) Time to wait for hotend to "settle" in M109
 #define TEMP_WINDOW 1          // (°C) Temperature proximity for the "temperature reached" timer
 #define TEMP_HYSTERESIS 3      // (°C) Temperature proximity considered "close enough" to the target
 
@@ -497,7 +499,7 @@
 #define HEATER_6_MAXTEMP 275
 #define HEATER_7_MAXTEMP 275
 #define BED_MAXTEMP 180
-#define CHAMBER_MAXTEMP 170
+#define CHAMBER_MAXTEMP 9970
 
 /**
  * Thermal Overshoot
@@ -542,9 +544,18 @@
     114.00, 114.00      \
   }
 #else
-#define DEFAULT_Kp 21.70
-#define DEFAULT_Ki 1.33
-#define DEFAULT_Kd 88.44
+//LT PID values
+#define DEFAULT_Kp 15.85
+#define DEFAULT_Ki 1.61
+#define DEFAULT_Kd 43.51
+//HT PID values
+//#define DEFAULT_Kp 30.05
+//#define DEFAULT_Ki 3.29
+//#define DEFAULT_Kd 68.66
+// ORIGINAL VALUES
+//#define DEFAULT_Kp 21.70
+//#define DEFAULT_Ki 1.33
+//#define DEFAULT_Kd 88.44
 #endif
 #endif // PIDTEMP
 
@@ -680,6 +691,7 @@
 
 #define THERMAL_PROTECTION_HOTENDS // Enable thermal protection for all extruders
 #define THERMAL_PROTECTION_BED     // Enable thermal protection for the heated bed
+//THIS VERSION USES THE CHAMBER THERM SLOT FOR PH
 #define THERMAL_PROTECTION_CHAMBER // Enable thermal protection for the heated chamber
 #define THERMAL_PROTECTION_COOLER  // Enable thermal protection for the laser cooling
 
@@ -1105,7 +1117,7 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 40
+#define PROBING_MARGIN 13
 
 // X and Y axis travel speed (mm/min) between probes
 #define XY_PROBE_FEEDRATE 8000
@@ -1331,7 +1343,7 @@
  * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
  */
-#define FILAMENT_RUNOUT_SENSOR
+//#define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
 #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
 #define NUM_RUNOUT_SENSORS 1            // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
@@ -1511,7 +1523,7 @@
 
 // Beyond the probed grid, continue the implied tilt?
 // Default is to maintain the height of the nearest edge.
-//#define EXTRAPOLATE_BEYOND_GRID
+#define EXTRAPOLATE_BEYOND_GRID
 
 //
 // Experimental Subdivision of the grid by Catmull-Rom method.
@@ -1531,7 +1543,7 @@
 //========================= Unified Bed Leveling ============================
 //===========================================================================
 
-//#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
+//#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while edDiting the mesh
 
 #define MESH_INSET 1         // Set Mesh bounds as an inset region of the bed
 #define GRID_MAX_POINTS_X 10 // Don't use more than 15 points per axis, implementation limited.
@@ -1727,10 +1739,10 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+//#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
-#define EEPROM_CHITCHAT    // Give feedback on EEPROM commands. Disable to save PROGMEM.
-#define EEPROM_BOOT_SILENT // Keep M503 quiet and only give errors during first load
+//#define EEPROM_CHITCHAT    // Give feedback on EEPROM commands. Disable to save PROGMEM.
+//#define EEPROM_BOOT_SILENT // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
 //#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
 #endif
@@ -1899,7 +1911,7 @@
  *   M76 - Pause the print job timer
  *   M77 - Stop the print job timer
  */
-#define PRINTJOB_TIMER_AUTOSTART
+//#define PRINTJOB_TIMER_AUTOSTART
 
 /**
  * Print Counter
