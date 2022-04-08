@@ -46,7 +46,7 @@
  * https://github.com/MarlinFirmware/Marlin/tree/071c7a78f27078fd4aee9a3ef365fcf5e143531e
  */
 
-#ifdef TARGET_LPC1768
+#ifdef 1 //(TARGET_LPC1768 || ENABLED(SPI_EEPROM))
 
 #include "../../inc/MarlinConfig.h"
 #include <SPI.h>
@@ -77,7 +77,7 @@
   }
 
   void spiBegin() {
-    swSpiBegin(SD_SCK_PIN, SD_MISO_PIN, SD_MOSI_PIN);
+    swSpiBegin(SD_SCK_PIN, SD_MISO_PIN, SD_MOSI_PIN); 
   }
 
   void spiInit(uint8_t spiRate) {
