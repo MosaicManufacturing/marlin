@@ -444,7 +444,7 @@
 // For Carbon use 1000
 #define TEMP_SENSOR_BED 1000
 #define TEMP_SENSOR_PROBE 0
-#define TEMP_SENSOR_CHAMBER 11
+#define TEMP_SENSOR_CHAMBER 1000
 #define TEMP_SENSOR_COOLER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -1289,8 +1289,8 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 355
-#define Y_BED_SIZE 355
+#define X_BED_SIZE 356
+#define Y_BED_SIZE 365
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1660,7 +1660,7 @@
 // Homing speeds (mm/min)
 #define HOMING_FEEDRATE_MM_M       \
   {                                \
-    (30 * 60), (30 * 60), (400) \
+    (20 * 60), (20 * 60), (400) \
   }
 
 // Validate that endstops are triggered on homing moves
@@ -2688,7 +2688,7 @@
 
 // Set number of user-controlled fans. Disable to use all board-defined fans.
 // :[1,2,3,4,5,6,7,8]
-// #define NUM_M106_FANS 1
+//#define NUM_M106_FANS 1
 
 // Increase the FAN PWM frequency. Removes the PWM noise but increases heating in the FET/Arduino
 //#define FAST_PWM_FAN

@@ -26,12 +26,26 @@
 
 #define BOARD_CUSTOM_BUILD_FLAGS -DTONE_CHANNEL=4 -DTONE_TIMER=4
 
+/* EEPROM PINS
+#define SPI_EEPROM
+#define MARLIN_EEPROM_SIZE 0x40000 
+#define SPI_CHAN_EEPROM1      1
+#define SPI_EEPROM1_CS       PD7 // EEPROM_CS_S
+#define EEPROM_MISO          PB4  // EEPROM_MISO
+#define EEPROM_MOSI          PB5  // EEPROM_MOSI
+#define EEPROM_CLK           PB3 // EEPROM_CLK_S
+//#define            PB3  // EEPROM_CLK
+#define EEPROM_PAGE_SIZE 0x100
+//#define E2END
+#define EEPROM_START_ADDRESS 0x0000
+*/
+
 // Onboard I2C EEPROM
-#if NO_EEPROM_SELECTED
-  #define I2C_EEPROM
-  #define MARLIN_EEPROM_SIZE 0x1000                 // 4KB
-  #undef NO_EEPROM_SELECTED
-#endif
+//#if NO_EEPROM_SELECTED
+// #define I2C_EEPROM
+//  #define MARLIN_EEPROM_SIZE 0x1000                 // 4KB
+//  #undef NO_EEPROM_SELECTED
+//#endif
 
 // #if NOT_TARGET(TARGET_STM32F1)
 //   #error "Oops! Select an STM32F1 board in 'Tools > Board.'"
@@ -43,12 +57,12 @@
 // Ignore temp readings during development.
 //#define BOGUS_TEMPERATURE_GRACE_PERIOD    2000
 
-#if EITHER(NO_EEPROM_SELECTED, FLASH_EEPROM_EMULATION)
-  #define FLASH_EEPROM_EMULATION
-  #define EEPROM_PAGE_SIZE     (0x800U)           // 2KB
-  #define EEPROM_START_ADDRESS (0x8000000UL + (STM32_FLASH_SIZE) * 1024UL - (EEPROM_PAGE_SIZE) * 2UL)
-  #define MARLIN_EEPROM_SIZE    EEPROM_PAGE_SIZE  // 2KB
-#endif
+//#if EITHER(NO_EEPROM_SELECTED, FLASH_EEPROM_EMULATION)
+//  #define FLASH_EEPROM_EMULATION
+//  #define EEPROM_PAGE_SIZE     (0x800U)           // 2KB
+//  #define EEPROM_START_ADDRESS (0x8000000UL + (STM32_FLASH_SIZE) * 1024UL - (EEPROM_PAGE_SIZE) * 2UL)
+//  #define MARLIN_EEPROM_SIZE    EEPROM_PAGE_SIZE  // 2KB
+//#endif
 
 //
 // Filament Runout Sensor
@@ -159,8 +173,11 @@
 
 //!FAN_PIN corresponds to FAN_1, FAN1_PIN corresponds to FAN_2 and etc.
 //These two are the extruder heat sink and part cooling fan
-#define FAN_PIN                           PE9   // "FAN_2" "FAN_HOT_MCU"
-#define FAN1_PIN                          PE8   // "FAN_1" "FAN_PRINT_MCU"   -> 39
+//!FAN_PIN is always on! other fan pins are set in config adv
+
+#define FAN1_PIN                           PE9   // "FAN_2" "FAN_HOT_MCU"
+//#define FAN1_PIN                         PE8   // "FAN_1" "FAN_PRINT_MCU"   -> 39
+//#define FAN2_PIN                         PA7
 
 //Remaining are the rest of the fans including the Hepa, heater, and electronics box fans
 // #define FAN2_PIN                          PE9    // "FAN_3"  -> pin 73   //!Use this as HEATER fan, MIGHT BE BROKEN

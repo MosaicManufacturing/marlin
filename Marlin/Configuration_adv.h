@@ -110,7 +110,7 @@
 #if TEMP_SENSOR_CHAMBER == 1000
 #define CHAMBER_PULLUP_RESISTOR_OHMS 4700  // Pullup resistor
 #define CHAMBER_RESISTANCE_25C_OHMS 100000 // Resistance at 25C
-#define CHAMBER_BETA 3950                  // Beta value
+#define CHAMBER_BETA 4250                  // Beta value
 #endif
 
 #if TEMP_SENSOR_COOLER == 1000
@@ -540,7 +540,7 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#define E0_AUTO_FAN_PIN FAN1_PIN
+#define E0_AUTO_FAN_PIN PE9
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
@@ -560,7 +560,7 @@
 #define COOLER_AUTO_FAN_SPEED 255
 
 /**
- * Part-Cooling Fan Multiplexer
+ * 
  *
  * This feature allows you to digitally multiplex the fan output.
  * The multiplexer is automatically switched at tool-change.
@@ -737,21 +737,21 @@
  * the position of the toolhead relative to the workspace.
  */
 
-//#define SENSORLESS_BACKOFF_MM  { 2, 2 }     // (mm) Backoff from endstops before sensorless homing
+//#define SENSORLESS_BACKOFF_MM  { 0, 5 }     // (mm) Backoff from endstops before sensorless homing
 
 #define HOMING_BUMP_MM \
    {                   \
-      3, 3, 2          \
+      0, 0, 2          \
    } // (mm) Backoff from endstops after first bump
 #define HOMING_BUMP_DIVISOR \
    {                        \
       2, 2, 4               \
    } // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
-//#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (mm) Backoff from endstops after homing
+#define HOMING_BACKOFF_POST_MM { 15, 15, 2 }  // (mm) Backoff from endstops after homing
 
 //#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
-//#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
+#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
 //#define HOME_Z_FIRST                        // Home Z first. Requires a Z-MIN endstop (not a probe).
 //#define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
 
@@ -2537,8 +2537,8 @@
 #define INTERPOLATE true
 
 #if AXIS_IS_TMC(X)
-#define X_CURRENT 550            // (mA) RMS current. Multiply by 1.414 for peak current.
-#define X_CURRENT_HOME 300 // (mA) RMS current for sensorless homing
+#define X_CURRENT 800            // (mA) RMS current. Multiply by 1.414 for peak current.
+#define X_CURRENT_HOME 200 // (mA) RMS current for sensorless homing
 #define X_MICROSTEPS 16          // 0..256
 #define X_RSENSE 0.1
 #define X_CHAIN_POS -1 // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
@@ -2555,8 +2555,8 @@
 #endif
 
 #if AXIS_IS_TMC(Y)
-#define Y_CURRENT 550
-#define Y_CURRENT_HOME 300
+#define Y_CURRENT 800
+#define Y_CURRENT_HOME 200
 #define Y_MICROSTEPS 16
 #define Y_RSENSE 0.1
 #define Y_CHAIN_POS -1
@@ -2573,7 +2573,7 @@
 #endif
 
 #if AXIS_IS_TMC(Z)
-#define Z_CURRENT 550
+#define Z_CURRENT 800
 #define Z_CURRENT_HOME Z_CURRENT
 #define Z_MICROSTEPS 16
 #define Z_RSENSE 0.1
@@ -2745,8 +2745,8 @@
    * Use Trinamic's ultra quiet stepping mode.
    * When disabled, Marlin will use spreadCycle stepping mode.
    */
-//#define STEALTHCHOP_XY
-//#define STEALTHCHOP_Z
+#define STEALTHCHOP_XY
+#define STEALTHCHOP_Z
 //#define STEALTHCHOP_E
 
 /**
@@ -2807,14 +2807,14 @@
    * This mode allows for faster movements at the expense of higher noise levels.
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
-   */
+   */ 
 //#define HYBRID_THRESHOLD
 
 #define X_HYBRID_THRESHOLD 100 // [mm/s]
 #define X2_HYBRID_THRESHOLD 100
 #define Y_HYBRID_THRESHOLD 100
 #define Y2_HYBRID_THRESHOLD 100
-#define Z_HYBRID_THRESHOLD 3
+#define Z_HYBRID_THRESHOLD 60
 #define Z2_HYBRID_THRESHOLD 3
 #define Z3_HYBRID_THRESHOLD 3
 #define Z4_HYBRID_THRESHOLD 3
@@ -2856,9 +2856,9 @@
 
 #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
 // TMC2209: 0...255. TMC2130: -64...63
-#define X_STALL_SENSITIVITY  82
+#define X_STALL_SENSITIVITY  90
 // #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-#define Y_STALL_SENSITIVITY  82
+#define Y_STALL_SENSITIVITY  90
 // #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
 //#define Z_STALL_SENSITIVITY  8
 //#define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
