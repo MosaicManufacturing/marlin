@@ -444,7 +444,7 @@
 // For Carbon use 1000
 #define TEMP_SENSOR_BED 1000
 #define TEMP_SENSOR_PROBE 0
-#define TEMP_SENSOR_CHAMBER 1000
+#define TEMP_SENSOR_CHAMBER 1047
 #define TEMP_SENSOR_COOLER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -1119,7 +1119,7 @@
 #define PROBING_MARGIN 40
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE 8000
+#define XY_PROBE_FEEDRATE 40 * 60
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST 240

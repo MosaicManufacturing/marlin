@@ -1163,7 +1163,6 @@ void prepare_line_to_destination() {
       hbd = 10;
       SERIAL_ECHO_MSG("Warning: Homing Bump Divisor < 1");
     }
-    SERIAL_ECHOPAIR("Feedrate - ",homing_feedrate(axis) / float(hbd));
     return homing_feedrate(axis) / float(hbd);
   }
 
@@ -1303,11 +1302,9 @@ void prepare_line_to_destination() {
    * Home an individual linear axis
    */
   void do_homing_move(const AxisEnum axis, const float distance, const feedRate_t fr_mm_s=0.0, const bool final_approach=true) {
-    SERIAL_ECHOLNPGM("Do homing Move");
     DEBUG_SECTION(log_move, "do_homing_move", DEBUGGING(LEVELING));
 
     const feedRate_t home_fr_mm_s = fr_mm_s ?: homing_feedrate(axis);
-    SERIAL_ECHOPAIR("new feedrate",home_fr_mm_s);
 
     if (DEBUGGING(LEVELING)) {
       DEBUG_ECHOPAIR("...(", AS_CHAR(axis_codes[axis]), ", ", distance, ", ");
@@ -1496,7 +1493,6 @@ void prepare_line_to_destination() {
    */
 
   void homeaxis(const AxisEnum axis) {
-    SERIAL_ECHOLNPGM("BIGGOOOOOOOOOOOOODHOMEAXIS");
 
     #if EITHER(MORGAN_SCARA, MP_SCARA)
       // Only Z homing (with probe) is permitted
@@ -1508,10 +1504,7 @@ void prepare_line_to_destination() {
         || (A##_MIN_PIN > -1 && A##_HOME_DIR < 0) \
         || (A##_MAX_PIN > -1 && A##_HOME_DIR > 0) \
       ))
-      if (!_CAN_HOME(X) && !_CAN_HOME(Y) && !_CAN_HOME(Z)){
-        SERIAL_ECHOLNPGM("Cant Home");
-        return;
-      }
+      if (!_CAN_HOME(X) && !_CAN_HOME(Y) && !_CAN_HOME(Z)) return;
     #endif
 
     if (DEBUGGING(LEVELING)) DEBUG_ECHOLNPAIR(">>> homeaxis(", AS_CHAR(axis_codes[axis]), ")");
