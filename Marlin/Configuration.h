@@ -444,7 +444,8 @@
 // For Carbon use 1000
 #define TEMP_SENSOR_BED 1000
 #define TEMP_SENSOR_PROBE 0
-#define TEMP_SENSOR_CHAMBER 1047
+//#define TEMP_SENSOR_CHAMBER 1047
+#define TEMP_SENSOR_CHAMBER 11
 #define TEMP_SENSOR_COOLER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
