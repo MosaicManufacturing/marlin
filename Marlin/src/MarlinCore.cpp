@@ -1059,6 +1059,7 @@ void setup() {
   // forcing spread pins high to lock in 'spreadcycle' mode for homing. UART should control this?
   //pinMode(PD14, OUTPUT); // z_spread
   //pinMode(PB6, OUTPUT); // x_spread
+  //pinMode(PD7, OUTPUT); // x_spread nitrogen
   //pinMode(PB14, OUTPUT); // Y_spread
   //pinMode(PC13, OUTPUT); // E_spread
 

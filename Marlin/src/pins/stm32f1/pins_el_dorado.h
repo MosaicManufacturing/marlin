@@ -84,6 +84,8 @@
 //
 #define X_MAX_PIN                          X_DIAG_PIN   //!No limit switches
 #define Y_MAX_PIN                          Y_DIAG_PIN //!No limit switches
+#define X_MIN_PIN                          X_DIAG_PIN   //!No limit switches
+#define Y_MIN_PIN                          Y_DIAG_PIN //!No limit switches
 //#define Z_STOP_PIN                          PB1
 #define Z_STOP_PIN                          PA1 // Z_Endstop (to Master MCU)
 //

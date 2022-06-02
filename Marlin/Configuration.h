@@ -444,6 +444,8 @@
 // For Carbon use 1000
 #define TEMP_SENSOR_BED 1000
 #define TEMP_SENSOR_PROBE 0
+// For Carbon use 1000 Chamber thermistor
+// For HT (direct wiring to heaterboard) use 1047 (PT1000)
 #define TEMP_SENSOR_CHAMBER 1000
 #define TEMP_SENSOR_COOLER 0
 
@@ -719,10 +721,10 @@
 // Specify here all the endstop connectors that are connected to any endstop or probe.
 // Almost all printers will be using one per axis. Probes will use one or more of the
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
-// #define USE_XMIN_PLUG
+#define USE_XMIN_PLUG
 // #define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
-#define USE_XMAX_PLUG
+//#define USE_XMAX_PLUG
 #define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
 
@@ -730,11 +732,11 @@
 // #define ENDSTOPPULLUPS
 #if DISABLED(ENDSTOPPULLUPS)
 // Disable ENDSTOPPULLUPS to set pullups individually
-#define ENDSTOPPULLUP_XMAX
+//#define ENDSTOPPULLUP_XMAX
 #define ENDSTOPPULLUP_YMAX
 //#define ENDSTOPPULLUP_ZMAX
-// #define ENDSTOPPULLUP_XMIN
-// #define ENDSTOPPULLUP_YMIN
+#define ENDSTOPPULLUP_XMIN
+//#define ENDSTOPPULLUP_YMIN
 //#define ENDSTOPPULLUP_ZMIN
 //#define ENDSTOPPULLUP_ZMIN_PROBE
 #endif
@@ -854,7 +856,7 @@
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    500, 500, 4, 100          \
+    500, 500, 20, 100          \
   }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -1116,13 +1118,13 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 40
+#define PROBING_MARGIN 10
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE 40 * 60
+#define XY_PROBE_FEEDRATE 200 * 60
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_FEEDRATE_FAST 240
+#define Z_PROBE_FEEDRATE_FAST 8 * 60
 
 // Feedrate (mm/min) for the "accurate" probe of each point
 #define Z_PROBE_FEEDRATE_SLOW Z_PROBE_FEEDRATE_FAST
@@ -1282,22 +1284,22 @@
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR 1
+#define X_HOME_DIR -1
 #define Y_HOME_DIR 1
 #define Z_HOME_DIR -1
 
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 356
-#define Y_BED_SIZE 365
+#define X_BED_SIZE 355
+#define Y_BED_SIZE 355
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
+#define X_MIN_POS -0.9
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
-#define Y_MAX_POS Y_BED_SIZE
+#define Y_MAX_POS Y_BED_SIZE + 10
 #define Z_MAX_POS 355
 
 /**
@@ -1636,8 +1638,8 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
+#define MANUAL_X_HOME_POS -0.9
+#define MANUAL_Y_HOME_POS 365
 //#define MANUAL_Z_HOME_POS 0
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
@@ -1660,7 +1662,7 @@
 // Homing speeds (mm/min)
 #define HOMING_FEEDRATE_MM_M       \
   {                                \
-    (20 * 60), (20 * 60), (400) \
+    (20 * 60), (10 * 60), (480) \
   }
 
 // Validate that endstops are triggered on homing moves
