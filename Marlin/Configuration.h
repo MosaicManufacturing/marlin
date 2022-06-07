@@ -434,7 +434,7 @@
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
-#define TEMP_SENSOR_4 0 
+#define TEMP_SENSOR_4 0
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
@@ -875,7 +875,7 @@
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    5000, 5000, 300, 2000       \
+    5000, 5000, 100, 2000       \
   }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
