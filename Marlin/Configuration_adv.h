@@ -560,7 +560,7 @@
 #define COOLER_AUTO_FAN_SPEED 255
 
 /**
- * 
+ *
  *
  * This feature allows you to digitally multiplex the fan output.
  * The multiplexer is automatically switched at tool-change.
@@ -2807,7 +2807,7 @@
    * This mode allows for faster movements at the expense of higher noise levels.
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
-   */ 
+   */
 //#define HYBRID_THRESHOLD
 
 #define X_HYBRID_THRESHOLD 100 // [mm/s]
@@ -2856,9 +2856,9 @@
 
 #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
 // TMC2209: 0...255. TMC2130: -64...63
-#define X_STALL_SENSITIVITY  83
+#define X_STALL_SENSITIVITY  80
 // #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-#define Y_STALL_SENSITIVITY  83
+#define Y_STALL_SENSITIVITY  80
 // #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
 //#define Z_STALL_SENSITIVITY  8
 //#define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
