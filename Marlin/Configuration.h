@@ -875,7 +875,7 @@
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    5000, 5000, 300, 2000       \
+    5000, 5000, 100, 2000       \
   }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -1118,7 +1118,7 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 2
+#define PROBING_MARGIN 10
 
 // X and Y axis travel speed (mm/min) between probes
 #define XY_PROBE_FEEDRATE (400 * 60)
