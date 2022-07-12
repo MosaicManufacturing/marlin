@@ -859,7 +859,11 @@
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    300*2, 300*2, 25*2, 100          \
+<<<<<<< HEAD
+    300, 300, 25, 100          \
+=======
+    300, 300, 25, 100          \
+>>>>>>> 8e7c8eeb8323d25f7eb783214407fffca8d6bd99
   }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -899,7 +903,7 @@
  */
 #define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  1500    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   2000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -1743,12 +1747,16 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-//#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
-//#define EEPROM_CHITCHAT    // Give feedback on EEPROM commands. Disable to save PROGMEM.
+#define EEPROM_CHITCHAT    // Give feedback on EEPROM commands. Disable to save PROGMEM.
 //#define EEPROM_BOOT_SILENT // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
+<<<<<<< HEAD
  // #define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
+=======
+  #define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
+>>>>>>> 8e7c8eeb8323d25f7eb783214407fffca8d6bd99
 #endif
 
 //
