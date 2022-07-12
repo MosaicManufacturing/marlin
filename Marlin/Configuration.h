@@ -896,7 +896,7 @@
  */
 #define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  1500    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   2000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -1284,7 +1284,7 @@
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
+#define X_HOME_DIR 1
 #define Y_HOME_DIR 1
 #define Z_HOME_DIR -1
 
@@ -1295,10 +1295,10 @@
 #define Y_BED_SIZE 355
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -0.9
+#define X_MIN_POS 0
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE
+#define X_MAX_POS X_BED_SIZE + 0.9
 #define Y_MAX_POS Y_BED_SIZE + 10
 #define Z_MAX_POS 355
 
@@ -1638,7 +1638,7 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-#define MANUAL_X_HOME_POS -0.9
+#define MANUAL_X_HOME_POS 355.9
 #define MANUAL_Y_HOME_POS 365
 //#define MANUAL_Z_HOME_POS 0
 

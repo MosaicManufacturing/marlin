@@ -2528,7 +2528,7 @@
  */
 #if HAS_TRINAMIC_CONFIG
 
-#define HOLD_MULTIPLIER 0.5 // Scales down the holding current from run current
+#define HOLD_MULTIPLIER 1 // Scales down the holding current from run current
 
 /**
    * Interpolate microsteps to 256
