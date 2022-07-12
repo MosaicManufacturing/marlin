@@ -546,10 +546,13 @@
     114.00, 114.00      \
   }
 #else
-//LT PID values
-#define DEFAULT_Kp 15.85
-#define DEFAULT_Ki 1.61
-#define DEFAULT_Kd 43.51
+#define DEFAULT_Kp 11.92
+#define DEFAULT_Ki 0.57
+#define DEFAULT_Kd 62.83
+//LT PID values OLD
+//#define DEFAULT_Kp 15.85
+//#define DEFAULT_Ki 1.61
+//#define DEFAULT_Kd 43.51
 //HT PID values
 //#define DEFAULT_Kp 30.05
 //#define DEFAULT_Ki 3.29
@@ -721,10 +724,10 @@
 // Specify here all the endstop connectors that are connected to any endstop or probe.
 // Almost all printers will be using one per axis. Probes will use one or more of the
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
-#define USE_XMIN_PLUG
+//#define USE_XMIN_PLUG
 // #define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
-//#define USE_XMAX_PLUG
+#define USE_XMAX_PLUG
 #define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
 
@@ -732,10 +735,10 @@
 // #define ENDSTOPPULLUPS
 #if DISABLED(ENDSTOPPULLUPS)
 // Disable ENDSTOPPULLUPS to set pullups individually
-//#define ENDSTOPPULLUP_XMAX
+#define ENDSTOPPULLUP_XMAX
 #define ENDSTOPPULLUP_YMAX
 //#define ENDSTOPPULLUP_ZMAX
-#define ENDSTOPPULLUP_XMIN
+//#define ENDSTOPPULLUP_XMIN
 //#define ENDSTOPPULLUP_YMIN
 //#define ENDSTOPPULLUP_ZMIN
 //#define ENDSTOPPULLUP_ZMIN_PROBE
@@ -856,7 +859,7 @@
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    500, 500, 25, 100          \
+    300, 300, 25, 100          \
   }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -896,7 +899,7 @@
  */
 #define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  1500    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   2000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -1284,7 +1287,7 @@
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
+#define X_HOME_DIR 1
 #define Y_HOME_DIR 1
 #define Z_HOME_DIR -1
 
@@ -1298,7 +1301,7 @@
 #define X_MIN_POS -0.9
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE
+#define X_MAX_POS X_BED_SIZE + 0.9
 #define Y_MAX_POS Y_BED_SIZE + 10
 #define Z_MAX_POS 355
 
@@ -1638,7 +1641,7 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-#define MANUAL_X_HOME_POS -0.9
+#define MANUAL_X_HOME_POS 356
 #define MANUAL_Y_HOME_POS 365
 //#define MANUAL_Z_HOME_POS 0
 
@@ -1740,12 +1743,12 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-//#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
-//#define EEPROM_CHITCHAT    // Give feedback on EEPROM commands. Disable to save PROGMEM.
+#define EEPROM_CHITCHAT    // Give feedback on EEPROM commands. Disable to save PROGMEM.
 //#define EEPROM_BOOT_SILENT // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
-//#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
+  #define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
 #endif
 
 //
