@@ -40,11 +40,18 @@
 #define EEPROM_START_ADDRESS 0x0000
 */
 
+
+#define I2C_EEPROM
+#define MARLIN_EEPROM_SIZE  0x1000
+#define I2C_SCL_PIN         PB6
+#define I2C_SDA_PIN         PB7
+
+
 // Onboard I2C EEPROM
 //#if NO_EEPROM_SELECTED
-// #define I2C_EEPROM
-//  #define MARLIN_EEPROM_SIZE 0x1000                 // 4KB
-//  #undef NO_EEPROM_SELECTED
+//#define I2C_EEPROM
+//#define MARLIN_EEPROM_SIZE 0x1000                 // 4KB
+//#undef NO_EEPROM_SELECTED
 //#endif
 
 // #if NOT_TARGET(TARGET_STM32F1)
@@ -52,7 +59,7 @@
 // #endif
 
 // Release PB3/PB4 (E0 STP/DIR) from JTAG pins
-// #define DISABLE_JTAG
+#define DISABLE_JTAG
 
 // Ignore temp readings during development.
 //#define BOGUS_TEMPERATURE_GRACE_PERIOD    2000
@@ -80,14 +87,14 @@
 #define E0_DIAG_PIN                         PA11  // PC8   // "E_DIAG"
 
 //
-// Limit Switches
+// Limit Switches use diag for both directions
 //
 #define X_MAX_PIN                          X_DIAG_PIN   //!No limit switches
 #define Y_MAX_PIN                          Y_DIAG_PIN //!No limit switches
 #define X_MIN_PIN                          X_DIAG_PIN   //!No limit switches
 #define Y_MIN_PIN                          Y_DIAG_PIN //!No limit switches
 //#define Z_STOP_PIN                          PB1
-#define Z_STOP_PIN                          PA1 // Z_Endstop (to Master MCU)
+#define Z_STOP_PIN                          PA7 // Z_Endstop (to Master MCU)
 //
 // Z Probe must be this pin
 //
@@ -117,7 +124,7 @@
 //#define Y_SERIAL_TX_PIN                     PB10  // Y_UART w/10k resistor
 #define Y_HARDWARE_SERIAL                   MSerial3
 
-#define X_ENABLE_PIN                        PB7  // "X_EN"
+#define X_ENABLE_PIN                        PB3  // "X_EN"
 #define X_STEP_PIN                          PD1   // "X_STEP"
 #define X_DIR_PIN                           PD0   // "X_DIR"
 //#define X_SERIAL_RX_PIN                     PD2  // X_UART
@@ -149,8 +156,8 @@
 
 #define TEMP_0_PIN                          PC4   // Analog Input "NOZ_THERM"
 #define TEMP_BED_PIN                        PA6   // Analog Input "BED_THERM"
-//#define TEMP_1_PIN                            PA5 // Analog Input "CH_TH_MCU" //! PA6 is confirmed to correspond to thermistor above printhead pcb 
-#define TEMP_CHAMBER_PIN                    PA5   // Analog Input "CH_TH_MCU" this should run to the thermistor above printhead PCB
+#define TEMP_1_PIN                          PA1 // Analog Input "CH_TH_MCU" //! PA6 is confirmed to correspond to thermistor above printhead pcb 
+#define TEMP_CHAMBER_PIN                    PA0   // Analog Input "CH_TH_MCU" this should run to the thermistor above printhead PCB
               // Analog Input "CH2_THERM" //! PA7 runs to the cold end thermistor, will for now run to the heater chamber thermistor P
 
 //? Test values
@@ -178,7 +185,7 @@
 //!FAN_PIN is always on! other fan pins are set in config adv
 
 #define FAN1_PIN                           PE9   // "FAN_2" "FAN_HOT_MCU"
-#define FAN_PIN                         PB0   // "FAN_1" "FAN_PRINT_MCU"   -> 39
+#define FAN_PIN                            PB0   // "FAN_1" "FAN_PRINT_MCU"   -> 39
 //#define FAN2_PIN                         PA7
 
 //Remaining are the rest of the fans including the Hepa, heater, and electronics box fans

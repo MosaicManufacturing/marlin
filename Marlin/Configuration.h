@@ -846,7 +846,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT \
   {                                 \
-    200/2, 200/2, 2560/2, 291.83          \
+    200, 200, 2560, 291.83          \
   }
 
 /**
@@ -1745,15 +1745,7 @@
 //#define EEPROM_CHITCHAT    // Give feedback on EEPROM commands. Disable to save PROGMEM.
 //#define EEPROM_BOOT_SILENT // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
-<<<<<<< HEAD
-<<<<<<< HEAD
  // #define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
-=======
-  #define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
->>>>>>> 8e7c8eeb8323d25f7eb783214407fffca8d6bd99
-=======
-//#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
->>>>>>> parent of 8e7c8eeb83 (Back Right homing again)
 #endif
 
 //
