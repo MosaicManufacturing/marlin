@@ -52,7 +52,7 @@
 // #endif
 
 // Release PB3/PB4 (E0 STP/DIR) from JTAG pins
-// #define DISABLE_JTAG
+#define DISABLE_JTAG
 
 // Ignore temp readings during development.
 //#define BOGUS_TEMPERATURE_GRACE_PERIOD    2000
@@ -178,7 +178,7 @@
 //!FAN_PIN is always on! other fan pins are set in config adv
 
 #define FAN1_PIN                           PE9   // "FAN_2" "FAN_HOT_MCU"
-#define FAN_PIN                         PB0   // "FAN_1" "FAN_PRINT_MCU"   -> 39
+#define FAN_PIN                            PB0   // "FAN_1" "FAN_PRINT_MCU"   -> 39
 //#define FAN2_PIN                         PA7
 
 //Remaining are the rest of the fans including the Hepa, heater, and electronics box fans
