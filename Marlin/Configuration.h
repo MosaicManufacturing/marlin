@@ -427,9 +427,10 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
+//! 1047 -> PT1000 high temp thermistor without amplifier
 //! 21 -> PT100 high temp thermistors with our amplifier board setup
 //! 11 -> NTC3950 low temp thermistors
-#define TEMP_SENSOR_0 11
+#define TEMP_SENSOR_0 1047
 #define TEMP_SENSOR_1 1
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -542,9 +543,18 @@
     114.00, 114.00      \
   }
 #else
-#define DEFAULT_Kp 21.70
-#define DEFAULT_Ki 1.33
-#define DEFAULT_Kd 88.44
+//LT PID values
+//#define DEFAULT_Kp 15.85
+//#define DEFAULT_Ki 1.61
+//#define DEFAULT_Kd 43.51
+//HT PID values
+#define DEFAULT_Kp 30.05
+#define DEFAULT_Ki 3.29
+#define DEFAULT_Kd 68.66
+// ORIGINAL VALUES
+//#define DEFAULT_Kp 21.70
+//#define DEFAULT_Ki 1.33
+//#define DEFAULT_Kd 88.44
 #endif
 #endif // PIDTEMP
 
@@ -583,9 +593,14 @@
 
 // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-#define DEFAULT_bedKp 15.11
-#define DEFAULT_bedKi 2.62
-#define DEFAULT_bedKd 58.14
+//FOR HT 120C
+#define DEFAULT_bedKp 29.03
+#define DEFAULT_bedKi 4.21
+#define DEFAULT_bedKd 133.45
+
+//#define DEFAULT_bedKp 15.11
+//#define DEFAULT_bedKi 2.62
+//#define DEFAULT_bedKd 58.14
 
 // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -1326,6 +1341,7 @@
  * Marlin knows a print job is running when:
  *  1. Running a print job from media started with M24.
  *  2. The Print Job Timer has been started with M75.
+ *  and
  *  3. The heaters were turned on and PRINTJOB_TIMER_AUTOSTART is enabled.
  *
  * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
@@ -1727,10 +1743,10 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+//#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
-#define EEPROM_CHITCHAT    // Give feedback on EEPROM commands. Disable to save PROGMEM.
-#define EEPROM_BOOT_SILENT // Keep M503 quiet and only give errors during first load
+//#define EEPROM_CHITCHAT    // Give feedback on EEPROM commands. Disable to save PROGMEM.
+//define EEPROM_BOOT_SILENT // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
 //#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
 #endif
@@ -1899,7 +1915,7 @@
  *   M76 - Pause the print job timer
  *   M77 - Stop the print job timer
  */
-#define PRINTJOB_TIMER_AUTOSTART
+//#define PRINTJOB_TIMER_AUTOSTART
 
 /**
  * Print Counter
