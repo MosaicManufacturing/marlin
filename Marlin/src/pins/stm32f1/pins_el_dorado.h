@@ -147,7 +147,7 @@
 //
 // Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
 
-#define TEMP_0_PIN                          PC4   // Analog Input "NOZ_THERM"
+#define TEMP_0_PIN                          PA7   // Analog Input "NOZ_THERM"
 #define TEMP_BED_PIN                        PA6   // Analog Input "BED_THERM"
 //#define TEMP_1_PIN                            PA5 // Analog Input "CH_TH_MCU" //! PA6 is confirmed to correspond to thermistor above printhead pcb 
 #define TEMP_CHAMBER_PIN                    PA5   // Analog Input "CH_TH_MCU" this should run to the thermistor above printhead PCB
