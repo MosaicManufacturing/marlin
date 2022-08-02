@@ -110,10 +110,10 @@
 //
 // Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
 
-#define TEMP_0_PIN                          PA7   // Analog Input "NOZ_THERM"
+#define TEMP_0_PIN                          PA5   // Analog Input "NOZ_THERM"
 #define TEMP_BED_PIN                        PC4   // Analog Input "BED_THERM"
 #define TEMP_1_PIN                          PA6   // Analog Input "CH1_THERM" //! PA6 is confirmed to correspond to thermistor above printhead pcb
-#define TEMP_CHAMBER_PIN                    PA5   // Analog Input "CH2_THERM" //! PA7 runs to the cold end thermistor, will for now run to the heater chamber thermistor
+#define TEMP_CHAMBER_PIN                    PA7   // Analog Input "CH2_THERM" //! PA7 runs to the cold end thermistor, will for now run to the heater chamber thermistor
 
 //? Test values
 //#define TEMP_1_PIN                          PA5   // Analog Input "NOZ_THERM"
