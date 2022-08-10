@@ -442,7 +442,7 @@
 // For Beryllium 11,9 with new bed thermistor use 1000
 //#define TEMP_SENSOR_BED 1000
 // For Beryllium 7,8,9,10,12 with original bed thermistor use 1
-#define TEMP_SENSOR_BED 1000
+#define TEMP_SENSOR_BED 1
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 1047
 #define TEMP_SENSOR_COOLER 0
