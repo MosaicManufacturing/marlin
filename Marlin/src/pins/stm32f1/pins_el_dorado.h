@@ -137,8 +137,8 @@
 
 //!FAN_PIN corresponds to FAN_1, FAN1_PIN corresponds to FAN_2 and etc.
 //These two are the extruder heat sink and part cooling fan
-#define FAN_PIN                           PC12   // "FAN_2"
-#define FAN1_PIN                          PE11   // "FAN_1"
+#define FAN1_PIN                           PE11   // "FAN_2"
+#define FAN_PIN                            PE9   // "FAN_1"
 
 //Remaining are the rest of the fans including the Hepa, heater, and electronics box fans
 // #define FAN2_PIN                          PE9    // "FAN_3"  -> pin 73   //!Use this as HEATER fan, MIGHT BE BROKEN
