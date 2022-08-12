@@ -40,12 +40,15 @@
 #define EEPROM_START_ADDRESS 0x0000
 */
 
-/*
+// I2C_EEPROM setup
 #define I2C_EEPROM
 #define MARLIN_EEPROM_SIZE  0x1000
+#define EEPROM_PAGE_SIZE 0x80
+#define EEPROM_START_ADDRESS 0x0000
 #define I2C_SCL_PIN         PB6
 #define I2C_SDA_PIN         PB7
-*/
+#define EEPROM_DEVICE_ADDRESS  0xC0
+
 
 // Onboard I2C EEPROM
 //#if NO_EEPROM_SELECTED
@@ -58,7 +61,7 @@
 //   #error "Oops! Select an STM32F1 board in 'Tools > Board.'"
 // #endif
 
-// Release PB3/PB4 (E0 STP/DIR) from JTAG pins
+// Release PB3/PB4 from JTAG pins
 #define DISABLE_JTAG
 
 // Ignore temp readings during development.

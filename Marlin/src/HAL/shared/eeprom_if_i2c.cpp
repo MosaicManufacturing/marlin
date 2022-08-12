@@ -34,9 +34,9 @@
 
 void eeprom_init() {
   Wire.begin(
-    #if PINS_EXIST(I2C_SCL, I2C_SDA)
-      uint8_t(I2C_SDA_PIN), uint8_t(I2C_SCL_PIN)
-    #endif
+    //#if PINS_EXIST(I2C_SCL, I2C_SDA)
+    //  uint8_t(I2C_SDA_PIN), uint8_t(I2C_SCL_PIN)
+    //#endif
   );
 }
 
