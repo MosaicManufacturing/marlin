@@ -849,7 +849,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT \
   {                                 \
-    200/2, 200/2, 2560/2, 291.83          \
+    200, 200, 2560, 291.83          \
   }
 
 /**
@@ -859,7 +859,7 @@
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    300*2, 300*2, 25, 100          \
+    400, 400, 25, 100          \
   }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -899,7 +899,7 @@
  */
 #define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  1500    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION   2000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -1186,8 +1186,8 @@
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
 #define Z_CLEARANCE_DEPLOY_PROBE 10  // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES 2 // Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE 1    // Z Clearance between multiple probes
+#define Z_CLEARANCE_BETWEEN_PROBES 3 // Z Clearance between probe points
+#define Z_CLEARANCE_MULTI_PROBE 3    // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
 
 #define Z_PROBE_LOW_POINT -4 // Farthest distance below the trigger-point to go before stopping
@@ -1252,9 +1252,9 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR true
-#define INVERT_Y_DIR false
-#define INVERT_Z_DIR false
+#define INVERT_X_DIR false
+#define INVERT_Y_DIR true
+#define INVERT_Z_DIR true
 
 // @section extruder
 
@@ -1641,7 +1641,7 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-#define MANUAL_X_HOME_POS 356
+#define MANUAL_X_HOME_POS 355.9
 #define MANUAL_Y_HOME_POS 365
 //#define MANUAL_Z_HOME_POS 0
 

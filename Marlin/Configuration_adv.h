@@ -943,7 +943,7 @@
  * Set DISABLE_INACTIVE_? 'true' to shut down axis steppers after an idle period.
  * The Deactive Time can be overridden with M18 and M84. Set to 0 for No Timeout.
  */
-#define DEFAULT_STEPPER_DEACTIVE_TIME 120
+#define DEFAULT_STEPPER_DEACTIVE_TIME 0
 #define DISABLE_INACTIVE_X true
 #define DISABLE_INACTIVE_Y true
 #define DISABLE_INACTIVE_Z true // Set 'false' if the nozzle could fall onto your printed part!
@@ -2537,8 +2537,8 @@
 #define INTERPOLATE true
 
 #if AXIS_IS_TMC(X)
-#define X_CURRENT 1400            // (mA) RMS current. Multiply by 1.414 for peak current.
-#define X_CURRENT_HOME X_CURRENT // (mA) RMS current for sensorless homing
+#define X_CURRENT 800            // (mA) RMS current. Multiply by 1.414 for peak current.
+#define X_CURRENT_HOME 200 // (mA) RMS current for sensorless homing
 #define X_MICROSTEPS 16          // 0..256
 #define X_RSENSE 0.1
 #define X_CHAIN_POS -1 // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
@@ -2555,8 +2555,8 @@
 #endif
 
 #if AXIS_IS_TMC(Y)
-#define Y_CURRENT 1400
-#define Y_CURRENT_HOME Y_CURRENT
+#define Y_CURRENT 800
+#define Y_CURRENT_HOME 200
 #define Y_MICROSTEPS 16
 #define Y_RSENSE 0.1
 #define Y_CHAIN_POS -1
@@ -2573,7 +2573,7 @@
 #endif
 
 #if AXIS_IS_TMC(Z)
-#define Z_CURRENT 1400
+#define Z_CURRENT 800
 #define Z_CURRENT_HOME Z_CURRENT
 #define Z_MICROSTEPS 16
 #define Z_RSENSE 0.1
@@ -2856,9 +2856,9 @@
 
 #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
 // TMC2209: 0...255. TMC2130: -64...63
-#define X_STALL_SENSITIVITY  40
+#define X_STALL_SENSITIVITY  75
 // #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-#define Y_STALL_SENSITIVITY  40
+#define Y_STALL_SENSITIVITY  75
 // #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
 //#define Z_STALL_SENSITIVITY  8
 //#define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
