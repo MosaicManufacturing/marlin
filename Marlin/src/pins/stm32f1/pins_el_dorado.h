@@ -159,8 +159,9 @@
 
 #define TEMP_0_PIN                          PC4   // Analog Input "NOZ_THERM"
 #define TEMP_BED_PIN                        PA6   // Analog Input "BED_THERM"
-#define TEMP_1_PIN                          PA1 // Analog Input "CH_TH_MCU" //! PA6 is confirmed to correspond to thermistor above printhead pcb 
-#define TEMP_CHAMBER_PIN                    PA0   // Analog Input "CH_TH_MCU" this should run to the thermistor above printhead PCB
+#define TEMP_1_PIN                          PA1 // Analog Input "Cold_TH" - cold side thermistor
+#define TEMP_CHAMBER_PIN                    PA5   // CH_TH_MCU - Back of printhead
+//#define TEMP_2_PIN                        PA0 // "Chamber_Therm"
               // Analog Input "CH2_THERM" //! PA7 runs to the cold end thermistor, will for now run to the heater chamber thermistor P
 
 //? Test values
