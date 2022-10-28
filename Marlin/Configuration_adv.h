@@ -741,17 +741,17 @@
 
 #define HOMING_BUMP_MM \
    {                   \
-      30, 0, 2          \
+      5, 5, 2          \
    } // (mm) Backoff from endstops after first bump
 #define HOMING_BUMP_DIVISOR \
    {                        \
-      2, 2, 4               \
+      1, 1, 4               \
    } // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
 #define HOMING_BACKOFF_POST_MM { 15, 15, 2 }  // (mm) Backoff from endstops after homing
 
 //#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
-//#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
+#define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
 //#define HOME_Z_FIRST                        // Home Z first. Requires a Z-MIN endstop (not a probe).
 //#define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
 
