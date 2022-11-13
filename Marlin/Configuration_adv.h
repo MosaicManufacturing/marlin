@@ -2540,7 +2540,7 @@
 #define X_CURRENT 800            // (mA) RMS current. Multiply by 1.414 for peak current.
 #define X_CURRENT_HOME 200 // (mA) RMS current for sensorless homing
 #define X_MICROSTEPS 16          // 0..256
-#define X_RSENSE 0.1
+#define X_RSENSE 0.18
 #define X_CHAIN_POS -1 // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
 //#define X_INTERPOLATE  true      // Enable to override 'INTERPOLATE' for the X axis
 #endif
@@ -2558,7 +2558,7 @@
 #define Y_CURRENT 800
 #define Y_CURRENT_HOME 200
 #define Y_MICROSTEPS 16
-#define Y_RSENSE 0.1
+#define Y_RSENSE 0.18
 #define Y_CHAIN_POS -1
 //#define Y_INTERPOLATE  true
 #endif
@@ -2576,7 +2576,7 @@
 #define Z_CURRENT 800
 #define Z_CURRENT_HOME Z_CURRENT
 #define Z_MICROSTEPS 16
-#define Z_RSENSE 0.1
+#define Z_RSENSE 0.18
 #define Z_CHAIN_POS -1
 //#define Z_INTERPOLATE  true
 #endif
@@ -2611,7 +2611,7 @@
 #if AXIS_IS_TMC(E0)
 #define E0_CURRENT 750
 #define E0_MICROSTEPS 16
-#define E0_RSENSE 0.1
+#define E0_RSENSE 0.18
 #define E0_CHAIN_POS -1
 //#define E0_INTERPOLATE true
 #endif
@@ -2856,9 +2856,9 @@
 
 #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
 // TMC2209: 0...255. TMC2130: -64...63
-#define X_STALL_SENSITIVITY  75
+#define X_STALL_SENSITIVITY  30
 // #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-#define Y_STALL_SENSITIVITY  75
+#define Y_STALL_SENSITIVITY  0
 // #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
 //#define Z_STALL_SENSITIVITY  8
 //#define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
