@@ -431,7 +431,8 @@
 //! 21 -> PT100 high temp thermistors with our amplifier board setup
 //! 11 -> NTC3950 low temp thermistors
 //THIS VERSION USES THE CHAMBER THERMISTOR SLOT FOR THE PRINTHEAD
-#define TEMP_SENSOR_0 1047
+//#define TEMP_SENSOR_0 1047
+#define TEMP_SENSOR_0 1
 #define TEMP_SENSOR_1 1
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
