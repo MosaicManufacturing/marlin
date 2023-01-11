@@ -446,7 +446,7 @@
 #define TEMP_SENSOR_PROBE 0
 // For Carbon use 1000 Chamber thermistor
 // For HT (direct wiring to heaterboard) use 1047 (PT1000)
-#define TEMP_SENSOR_CHAMBER 1000
+#define TEMP_SENSOR_CHAMBER 5
 #define TEMP_SENSOR_COOLER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
