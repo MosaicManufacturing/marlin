@@ -30,7 +30,7 @@
  * - Type of temperature sensor
  * - Printer geometry
  * - Endstop configuration
- * - LCD controller
+ * - LCD controller (we are not using it)
  * - Extra features
  *
  * Advanced settings can be found in Configuration_adv.h
