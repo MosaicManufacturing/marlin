@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
     python3-dev \
     python-is-python3 \
+    zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* && \
     pip3 install platformio==6.1.6 && \
