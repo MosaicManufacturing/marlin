@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-dev \
     python-is-python3 \
     zip \
+    unzip \
     curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* && \
