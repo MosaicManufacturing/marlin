@@ -32,8 +32,8 @@
 #define SPI_CHAN_EEPROM1      1
 #define SPI_EEPROM1_CS       PD7 // EEPROM_CS_S
 #define EEPROM_MISO          PB4  // EEPROM_MISO
-#define EEPROM_MOSI          PB5  // EEPROM_MOSI
-#define EEPROM_CLK           PB3 // EEPROM_CLK_S
+#define EEPROM_MOSI          PB5  // EEPROM_MOSI  
+#define EEPROM_CLK           PB3 // EEPROM_CLK_S (X_ENN)
 //#define            PB3  // EEPROM_CLK
 #define EEPROM_PAGE_SIZE 0x100
 //#define E2END
@@ -42,12 +42,12 @@
 
 // I2C_EEPROM setup
 #define I2C_EEPROM
-#define MARLIN_EEPROM_SIZE  0x1000
-#define EEPROM_PAGE_SIZE 0x80
-#define EEPROM_START_ADDRESS 0x0000
-#define I2C_SCL_PIN         PB6
-#define I2C_SDA_PIN         PB7
-#define EEPROM_DEVICE_ADDRESS  0xC0
+#define MARLIN_EEPROM_SIZE  0x2000  //  (8Kbit, 8x1K) 
+#define EEPROM_PAGE_SIZE 0x80   // ???? (page write 16 bytes of data)
+#define EEPROM_START_ADDRESS 0x0000 // ????
+#define I2C_SCL_PIN         PB6  // SCL_S
+#define I2C_SDA_PIN         PB7  // SDA_S
+#define EEPROM_DEVICE_ADDRESS  0xA0 // From Datasheet 1010 x b1 b2 r/w 
 
 
 // Onboard I2C EEPROM
