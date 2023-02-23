@@ -157,7 +157,7 @@
 //
 // Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
 
-#define TEMP_0_PIN                          PC4   // Analog Input "NOZ_THERM"
+#define TEMP_0_PIN                          PA7   // Analog Input "NOZ_THERM"
 #define TEMP_BED_PIN                        PA6   // Analog Input "BED_THERM"
 #define TEMP_1_PIN                          PA1 // Analog Input "Cold_TH" - cold side thermistor
 #define TEMP_CHAMBER_PIN                    PA5   // CH_TH_MCU - Back of printhead
