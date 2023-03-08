@@ -52,9 +52,10 @@ typedef struct { int16_t value; celsius_t celsius; } temp_entry_t;
 // a=3.9083E-3, b=-5.775E-7
 #define PtA 3.9083E-3
 #define PtB -5.775E-7
-#define PtRt(T,R0) ((R0) * (1.0 + (PtA) * (T) + (PtB) * (T) * (T)))
+#define PTt(T) (1.08 * T + 2.95)  // Adjustment Function 
+#define PtRt(T,R0) ((R0) * (1.0 + (PtA) * PTt(T) + (PtB) * PTt(T) * PTt(T)))
 #define PtAdVal(T,R0,Rup) (short)(1024 / (Rup / PtRt(T, R0) + 1))
-#define PtLine(T,R0,Rup) { OV(PtAdVal(T, R0, Rup)), T }
+#define PtLine(T,R0,Rup) { OV(PtAdVal(T, R0, Rup)), T }  // Calculates Voltage - Temp Relationship
 
 #if ANY_THERMISTOR_IS(1) // beta25 = 4092 K, R25 = 100 kOhm, Pull-up = 4.7 kOhm, "EPCOS"
   #include "thermistor_1.h"
