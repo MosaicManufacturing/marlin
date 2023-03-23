@@ -546,9 +546,13 @@
     114.00, 114.00      \
   }
 #else
-#define DEFAULT_Kp 11.92
-#define DEFAULT_Ki 0.57
-#define DEFAULT_Kd 62.83
+#define DEFAULT_Kp 24.86
+#define DEFAULT_Ki 3.295
+#define DEFAULT_Kd 45.56
+//LT OLD (Mar-23-23)
+//#define DEFAULT_Kp 11.92
+//#define DEFAULT_Ki 0.57
+//#define DEFAULT_Kd 62.83
 //LT PID values OLD
 //#define DEFAULT_Kp 15.85
 //#define DEFAULT_Ki 1.61
@@ -1186,11 +1190,11 @@
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
 #define Z_CLEARANCE_DEPLOY_PROBE 10  // Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES 2 // Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE 1    // Z Clearance between multiple probes
+#define Z_CLEARANCE_BETWEEN_PROBES 3 // Z Clearance between probe points
+#define Z_CLEARANCE_MULTI_PROBE 2    // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
 
-#define Z_PROBE_LOW_POINT -4 // Farthest distance below the trigger-point to go before stopping
+#define Z_PROBE_LOW_POINT -3 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -20
@@ -1280,7 +1284,7 @@
  */
 //#define Z_IDLE_HEIGHT Z_HOME_POS
 
-//#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
+#define Z_HOMING_HEIGHT  3      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
 // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
 
 //#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z
@@ -1665,7 +1669,7 @@
 // Homing speeds (mm/min)
 #define HOMING_FEEDRATE_MM_M       \
   {                                \
-    (5 * 60), (5 * 60), (480) \
+    (5 * 90), (5 * 90), (480) \
   }
 
 // Validate that endstops are triggered on homing moves
