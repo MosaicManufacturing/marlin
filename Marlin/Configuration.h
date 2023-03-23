@@ -546,9 +546,13 @@
     114.00, 114.00      \
   }
 #else
-#define DEFAULT_Kp 11.92
-#define DEFAULT_Ki 0.57
-#define DEFAULT_Kd 62.83
+#define DEFAULT_Kp 24.86
+#define DEFAULT_Ki 3.295
+#define DEFAULT_Kd 45.56
+//LT OLD (Mar-23-23)
+//#define DEFAULT_Kp 11.92
+//#define DEFAULT_Ki 0.57
+//#define DEFAULT_Kd 62.83
 //LT PID values OLD
 //#define DEFAULT_Kp 15.85
 //#define DEFAULT_Ki 1.61
