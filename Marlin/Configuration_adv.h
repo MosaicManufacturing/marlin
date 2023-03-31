@@ -439,7 +439,7 @@
  */
 #define HOTEND_IDLE_TIMEOUT
 #if ENABLED(HOTEND_IDLE_TIMEOUT)
-#define HOTEND_IDLE_TIMEOUT_SEC (5 * 60) // (seconds) Time without extruder movement to trigger protection
+#define HOTEND_IDLE_TIMEOUT_SEC (20 * 60) // (seconds) Time without extruder movement to trigger protection
 #define HOTEND_IDLE_MIN_TRIGGER 180      // (°C) Minimum temperature to enable hotend protection
 #define HOTEND_IDLE_NOZZLE_TARGET 0      // (°C) Safe temperature for the nozzle after timeout
 #define HOTEND_IDLE_BED_TARGET 0         // (°C) Safe temperature for the bed after timeout
@@ -737,11 +737,11 @@
  * the position of the toolhead relative to the workspace.
  */
 
-//#define SENSORLESS_BACKOFF_MM  { 0, 5 }     // (mm) Backoff from endstops before sensorless homing
+//#define SENSORLESS_BACKOFF_MM  { 55, 0 }     // (mm) Backoff from endstops before sensorless homing
 
 #define HOMING_BUMP_MM \
    {                   \
-      5, 5, 2          \
+      0, 0, 2          \
    } // (mm) Backoff from endstops after first bump
 #define HOMING_BUMP_DIVISOR \
    {                        \
@@ -2538,7 +2538,7 @@
 
 #if AXIS_IS_TMC(X)
 #define X_CURRENT 1400            // (mA) RMS current. Multiply by 1.414 for peak current.
-#define X_CURRENT_HOME X_CURRENT // (mA) RMS current for sensorless homing
+#define X_CURRENT_HOME 400 // (mA) RMS current for sensorless homing
 #define X_MICROSTEPS 16          // 0..256
 #define X_RSENSE 0.18
 #define X_CHAIN_POS -1 // -1..0: Not chained. 1: MCU MOSI connected. 2: Next in chain, ...
@@ -2555,8 +2555,8 @@
 #endif
 
 #if AXIS_IS_TMC(Y)
-#define Y_CURRENT 1400
-#define Y_CURRENT_HOME Y_CURRENT
+#define Y_CURRENT X_CURRENT
+#define Y_CURRENT_HOME X_CURRENT_HOME
 #define Y_MICROSTEPS 16
 #define Y_RSENSE 0.18
 #define Y_CHAIN_POS -1
@@ -2856,7 +2856,7 @@
 
 #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
 // TMC2209: 0...255. TMC2130: -64...63
-#define X_STALL_SENSITIVITY  27
+#define X_STALL_SENSITIVITY  123
 // #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
 #define Y_STALL_SENSITIVITY  0
 // #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
@@ -2865,7 +2865,7 @@
 //#define Z3_STALL_SENSITIVITY Z_STALL_SENSITIVITY
 //#define Z4_STALL_SENSITIVITY Z_STALL_SENSITIVITY
 //#define SPI_ENDSTOPS              // TMC2130 only
-#define IMPROVE_HOMING_RELIABILITY
+//#define IMPROVE_HOMING_RELIABILITY
 #endif
 
 /**
@@ -2878,7 +2878,7 @@
    *
    * Values from 0..1023, -1 to disable homing phase for that axis.
    */
-//#define TMC_HOME_PHASE { 896, 896, 896 }
+//#define TMC_HOME_PHASE { 256, 256, -1 }
 
 /**
    * Beta feature!
