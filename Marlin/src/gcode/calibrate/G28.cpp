@@ -378,7 +378,7 @@ void GcodeSuite::G28() {
     }
 
     // Home Y (after X)
-    if (DISABLED(HOME_Y_BEFORE_X) && doY)
+    if ((DISABLED(HOME_Y_BEFORE_X) && doY) || (ENABLED(REHOME_Y_AFTER_X) && doY && doX))
       homeaxis(Y_AXIS);
 
     TERN_(IMPROVE_HOMING_RELIABILITY, end_slow_homing(slow_homing));
