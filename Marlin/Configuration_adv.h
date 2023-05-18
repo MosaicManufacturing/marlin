@@ -238,8 +238,8 @@
  * THERMAL_PROTECTION_HYSTERESIS and/or THERMAL_PROTECTION_PERIOD
  */
 #if ENABLED(THERMAL_PROTECTION_HOTENDS)
-#define THERMAL_PROTECTION_PERIOD 40    // Seconds
-#define THERMAL_PROTECTION_HYSTERESIS 4 // Degrees Celsius
+#define THERMAL_PROTECTION_PERIOD 180    // Seconds
+#define THERMAL_PROTECTION_HYSTERESIS 100 // Degrees Celsius
 
 //#define ADAPTIVE_FAN_SLOWING              // Slow part cooling fan if temperature drops
 #if BOTH(ADAPTIVE_FAN_SLOWING, PIDTEMP)
@@ -437,9 +437,9 @@
  * Hotend Idle Timeout
  * Prevent filament in the nozzle from charring and causing a critical jam.
  */
-#define HOTEND_IDLE_TIMEOUT
+//#define HOTEND_IDLE_TIMEOUT
 #if ENABLED(HOTEND_IDLE_TIMEOUT)
-#define HOTEND_IDLE_TIMEOUT_SEC (20 * 60) // (seconds) Time without extruder movement to trigger protection
+#define HOTEND_IDLE_TIMEOUT_SEC (2000 * 60) // (seconds) Time without extruder movement to trigger protection
 #define HOTEND_IDLE_MIN_TRIGGER 180      // (°C) Minimum temperature to enable hotend protection
 #define HOTEND_IDLE_NOZZLE_TARGET 0      // (°C) Safe temperature for the nozzle after timeout
 #define HOTEND_IDLE_BED_TARGET 0         // (°C) Safe temperature for the bed after timeout
