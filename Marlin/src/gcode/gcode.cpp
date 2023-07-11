@@ -907,6 +907,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
         #endif
         #if USE_SENSORLESS
           case 914: M914(); break;                                // M914: Set StallGuard sensitivity.
+          case 920: M920(); break;
         #endif
       #endif
 

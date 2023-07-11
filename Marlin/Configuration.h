@@ -1060,7 +1060,7 @@
 #endif
 
 // Duet Smart Effector (for delta printers) - https://bit.ly/2ul5U7J
-// When the pin is defined you can use M672 to set/reset the probe sensivity.
+// When the pin is defined you can use M672 to set/reset the probe sensitivity.
 //#define DUET_SMART_EFFECTOR
 #if ENABLED(DUET_SMART_EFFECTOR)
 #define SMART_EFFECTOR_MOD_PIN -1 // Connect a GPIO pin to the Smart Effector MOD pin
@@ -1666,10 +1666,11 @@
 #endif
 
 //Y speed was 25*60
+//Pilot currently at 60*60 for both x & y
 // Homing speeds (mm/min)
 #define HOMING_FEEDRATE_MM_M       \
   {                                \
-    (70 * 60), (70 * 60), (480) \
+    (70 * 60), (70 * 60), (480) \ 
   }
 
 // Validate that endstops are triggered on homing moves
