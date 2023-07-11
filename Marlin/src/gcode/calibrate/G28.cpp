@@ -20,6 +20,7 @@
  *
  */
 
+#include <algorithm>
 #include "../../inc/MarlinConfig.h"
 
 #include "../gcode.h"
@@ -64,6 +65,13 @@
 
 #define DEBUG_OUT ENABLED(DEBUG_LEVELING_FEATURE)
 #include "../../core/debug_out.h"
+
+#include "../../module/temperature.h"
+#include "../../feature/tmc_util.h"
+
+#include "../feature/elementOxygen/variableSensitivity.h"
+
+extern VariableXYSensitivity variableXYSensitivity;
 
 #if ENABLED(QUICK_HOME)
 
@@ -325,9 +333,23 @@ void GcodeSuite::G28() {
                homeX = needX || parser.seen('X'), homeY = needY || parser.seen('Y'),
                home_all = homeX == homeY && homeX == homeZ, // All or None
                doX = home_all || homeX, doY = home_all || homeY, doZ = home_all || homeZ;
+    if (variableXYSensitivity.getToggle()) {
+      #if (X_SENSORLESS)
+        #if AXIS_HAS_STALLGUARD(X)
+          //set base sensitivity for initial home if variable XY sensitivity is enabled
+          stepperX.homing_threshold(variableXYSensitivity.getXBase() - variableXYSensitivity.getXOffset()); //removed index if statement
+        #endif
+        #if AXIS_HAS_STALLGUARD(X2)
+          if (!(index & 1)) stepperX2.homing_threshold(value);
+        #endif
+      #endif
+      // MAYBE ADD SAME THING FOR Y TO BE NEAT?
+    }
+
+
 
     #if ENABLED(HOME_Z_FIRST)
-
+    
       if (doZ) homeaxis(Z_AXIS);
 
     #endif
@@ -353,7 +375,22 @@ void GcodeSuite::G28() {
 
     // Home X
     if (doX || (doY && ENABLED(CODEPENDENT_XY_HOMING) && DISABLED(HOME_Y_BEFORE_X))) {
-
+      if (doX && doY && variableXYSensitivity.getToggle()) {
+        //if homing both axis, then at this point will have already homed Y and will be at back near motors
+        #if X_SENSORLESS
+          const float maxChamberTemp = 80.;
+          const float minChamberTemp = 20.;
+          float offset_r = (thermalManager.degChamber() - minChamberTemp) / (maxChamberTemp - minChamberTemp);
+          offset_r = min(offset_r, 1.0f);
+          offset_r = max(offset_r, 0.0f);
+          int16_t value = (int16_t)floor(variableXYSensitivity.getXBase() - offset_r*variableXYSensitivity.getXOffset());
+          // note that this ^ is a 'floor' conversion
+          stepperX.homing_threshold(value); //removed index if statement
+        #endif
+        #if AXIS_HAS_STALLGUARD(X2) //should add ^ behavior to X2 motor?
+          if (!(index & 1)) stepperX2.homing_threshold(value);
+        #endif
+      }
       #if ENABLED(DUAL_X_CARRIAGE)
 
         // Always home the 2nd (right) extruder first
