@@ -2858,7 +2858,7 @@
 
 #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
 // TMC2209: 0...255. TMC2130: -64...63
-#define X_STALL_SENSITIVITY  125
+#define X_STALL_SENSITIVITY  100 //Changed from 125 in Pilot. Temporary value for AQUA until enough time to tune for densifier use
 #define Y_STALL_SENSITIVITY  0
 #endif
 
