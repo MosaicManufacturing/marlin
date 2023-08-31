@@ -1128,7 +1128,7 @@
 #define PROBING_MARGIN 10
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE (200 * 60) //reduce speed from 400 * 60 to allow for move to middle after XY homing and before Z home to not skip
+#define XY_PROBE_FEEDRATE (400 * 60) //reduce speed from 400 * 60 to allow for move to middle after XY homing and before Z home to not skip
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST 8 * 60
