@@ -904,6 +904,7 @@
 #define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  1500    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_XYHOMING_ACCELERATION 1000    // X, Y acceleration for XY homing
 
 /**
  * Default Jerk limits (mm/s)
