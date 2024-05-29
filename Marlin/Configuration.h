@@ -913,6 +913,7 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
+//TEST ABLE TO PR
 #define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
 #define DEFAULT_XJERK 10.0
