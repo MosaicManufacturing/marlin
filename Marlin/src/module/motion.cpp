@@ -1324,6 +1324,11 @@ void prepare_line_to_destination() {
       sensorless_t stealth_states;
     #endif
 
+    if ((axis == X_AXIS) || (axis == Y_AXIS))
+      planner.isXYHoming = true;
+    else
+      planner.isXYHoming = false;
+
     if (is_home_dir) {
 
       if (TERN0(HOMING_Z_WITH_PROBE, axis == Z_AXIS)) {
@@ -1372,6 +1377,7 @@ void prepare_line_to_destination() {
     #endif
 
     planner.synchronize();
+    planner.isXYHoming = false;
 
     if (is_home_dir) {
 

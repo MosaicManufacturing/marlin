@@ -131,6 +131,7 @@ uint16_t Planner::cleaning_buffer_counter;      // A counter to disable queuing 
 uint8_t Planner::delay_before_delivering;       // This counter delays delivery of blocks when queue becomes empty to allow the opportunity of merging blocks
 
 planner_settings_t Planner::settings;           // Initialized by settings.load()
+bool Planner::isXYHoming;                       // Initialized by settings.load()
 
 #if ENABLED(LASER_POWER_INLINE)
   laser_state_t Planner::laser_inline;          // Current state for blocks
@@ -2292,7 +2293,7 @@ bool Planner::_populate_block(block_t * const block, bool split_move,
     }while(0)
 
     // Start with print or travel acceleration
-    accel = CEIL((esteps ? settings.acceleration : settings.travel_acceleration) * steps_per_mm);
+    accel = CEIL((esteps ? settings.acceleration : (isXYHoming ? settings.XYhoming_acceleration : settings.travel_acceleration)) * steps_per_mm);
 
     #if ENABLED(LIN_ADVANCE)
 
