@@ -274,7 +274,8 @@ typedef struct {
  feedRate_t max_feedrate_mm_s[XYZE_N];          // (mm/s) M203 XYZE - Max speeds
       float acceleration,                       // (mm/s^2) M204 S - Normal acceleration. DEFAULT ACCELERATION for all printing moves.
             retract_acceleration,               // (mm/s^2) M204 R - Retract acceleration. Filament pull-back and push-forward while standing still in the other axes
-            travel_acceleration;                // (mm/s^2) M204 T - Travel acceleration. DEFAULT ACCELERATION for all NON printing moves.
+            travel_acceleration,                // (mm/s^2) M204 T - Travel acceleration. DEFAULT ACCELERATION for all NON printing moves.
+            XYhoming_acceleration;              // (mm/s^2) M204 H - acceleration for XY homing moves
  feedRate_t min_feedrate_mm_s,                  // (mm/s) M205 S - Minimum linear feedrate
             min_travel_feedrate_mm_s;           // (mm/s) M205 T - Minimum travel feedrate
 } planner_settings_t;
@@ -427,6 +428,9 @@ class Planner {
         refresh_frequency_limit();
       }
     #endif
+
+    // add 'homing' flag for planner
+    static bool isXYHoming;
 
   private:
 

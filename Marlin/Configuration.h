@@ -729,10 +729,10 @@
 // Almost all printers will be using one per axis. Probes will use one or more of the
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
 //#define USE_XMIN_PLUG
-#define USE_YMIN_PLUG
+//#define USE_YMIN_PLUG
 #define USE_ZMIN_PLUG
 #define USE_XMAX_PLUG
-//#define USE_YMAX_PLUG
+#define USE_YMAX_PLUG
 //#define USE_ZMAX_PLUG
 
 // Enable pullup for all endstops to prevent a floating state
@@ -740,10 +740,10 @@
 #if DISABLED(ENDSTOPPULLUPS)
 // Disable ENDSTOPPULLUPS to set pullups individually
 #define ENDSTOPPULLUP_XMAX
-//#define ENDSTOPPULLUP_YMAX
+#define ENDSTOPPULLUP_YMAX
 //#define ENDSTOPPULLUP_ZMAX
 //#define ENDSTOPPULLUP_XMIN
-#define ENDSTOPPULLUP_YMIN
+//#define ENDSTOPPULLUP_YMIN
 //#define ENDSTOPPULLUP_ZMIN
 //#define ENDSTOPPULLUP_ZMIN_PROBE
 #endif
@@ -904,6 +904,7 @@
 #define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  1500    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_XYHOMING_ACCELERATION 1000    // X, Y acceleration for XY homing
 
 /**
  * Default Jerk limits (mm/s)
@@ -1060,7 +1061,7 @@
 #endif
 
 // Duet Smart Effector (for delta printers) - https://bit.ly/2ul5U7J
-// When the pin is defined you can use M672 to set/reset the probe sensivity.
+// When the pin is defined you can use M672 to set/reset the probe sensitivity.
 //#define DUET_SMART_EFFECTOR
 #if ENABLED(DUET_SMART_EFFECTOR)
 #define SMART_EFFECTOR_MOD_PIN -1 // Connect a GPIO pin to the Smart Effector MOD pin
@@ -1292,7 +1293,7 @@
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
 #define X_HOME_DIR 1
-#define Y_HOME_DIR -1
+#define Y_HOME_DIR 1
 #define Z_HOME_DIR -1
 
 // @section machine
@@ -1646,7 +1647,7 @@
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
 #define MANUAL_X_HOME_POS 356
-#define MANUAL_Y_HOME_POS -1
+#define MANUAL_Y_HOME_POS 365
 //#define MANUAL_Z_HOME_POS 0
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
@@ -1666,10 +1667,11 @@
 #endif
 
 //Y speed was 25*60
+//Pilot currently at 60*60 for both x & y
 // Homing speeds (mm/min)
 #define HOMING_FEEDRATE_MM_M       \
   {                                \
-    (60 * 60), (60 * 60), (480) \
+    (70 * 60), (70 * 60), (480) \ 
   }
 
 // Validate that endstops are triggered on homing moves

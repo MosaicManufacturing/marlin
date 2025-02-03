@@ -302,6 +302,7 @@
 
 #include "../inc/MarlinConfig.h"
 #include "parser.h"
+#include "../gcode/feature/elementOxygen/variableSensitivity.h"
 
 #if ENABLED(I2C_POSITION_ENCODERS)
   #include "../feature/encoder_i2c.h"
@@ -1018,6 +1019,7 @@ private:
     #endif
     #if ENABLED(USE_SENSORLESS)
       static void M914();
+      static void M920();
     #endif
   #endif
 

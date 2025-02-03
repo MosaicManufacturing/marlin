@@ -440,9 +440,9 @@
 #define HOTEND_IDLE_TIMEOUT
 #if ENABLED(HOTEND_IDLE_TIMEOUT)
 #define HOTEND_IDLE_TIMEOUT_SEC (20 * 60) // (seconds) Time without extruder movement to trigger protection
-#define HOTEND_IDLE_MIN_TRIGGER 180      // (°C) Minimum temperature to enable hotend protection
-#define HOTEND_IDLE_NOZZLE_TARGET 0      // (°C) Safe temperature for the nozzle after timeout
-#define HOTEND_IDLE_BED_TARGET 0         // (°C) Safe temperature for the bed after timeout
+#define HOTEND_IDLE_MIN_TRIGGER 180       // (°C) Minimum temperature to enable hotend protection
+#define HOTEND_IDLE_NOZZLE_TARGET 0       // (°C) Safe temperature for the nozzle after timeout
+#define HOTEND_IDLE_BED_TARGET 120        // (°C) Safe temperature for the bed after timeout
 #endif
 
 // @section temperature
@@ -748,10 +748,12 @@
       1, 1, 4               \
    } // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
-#define HOMING_BACKOFF_POST_MM { 15, 15, 2 }  // (mm) Backoff from endstops after homing
+#define HOMING_BACKOFF_POST_MM { 95, 15, 2 }  // (mm) Backoff from endstops after homing
 
 //#define QUICK_HOME                          // If G28 contains XY do a diagonal move first
 #define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
+#define REHOME_Y_AFTER_X               
+      // If G28 contains XY home Y a second time after both have been homed
 //#define HOME_Z_FIRST                        // Home Z first. Requires a Z-MIN endstop (not a probe).
 //#define CODEPENDENT_XY_HOMING               // If X/Y can't home without homing Y/X first
 
@@ -943,10 +945,10 @@
  * Set DISABLE_INACTIVE_? 'true' to shut down axis steppers after an idle period.
  * The Deactive Time can be overridden with M18 and M84. Set to 0 for No Timeout.
  */
-#define DEFAULT_STEPPER_DEACTIVE_TIME 0
-#define DISABLE_INACTIVE_X true
-#define DISABLE_INACTIVE_Y true
-#define DISABLE_INACTIVE_Z true // Set 'false' if the nozzle could fall onto your printed part!
+#define DEFAULT_STEPPER_DEACTIVE_TIME 40 //[s]
+#define DISABLE_INACTIVE_X false
+#define DISABLE_INACTIVE_Y false
+#define DISABLE_INACTIVE_Z false // Set 'false' if the nozzle could fall onto your printed part!
 #define DISABLE_INACTIVE_E true
 
 // Default Minimum Feedrates for printing and travel moves
@@ -2856,16 +2858,8 @@
 
 #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
 // TMC2209: 0...255. TMC2130: -64...63
-#define X_STALL_SENSITIVITY  110
-// #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
+#define X_STALL_SENSITIVITY  125
 #define Y_STALL_SENSITIVITY  0
-// #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
-//#define Z_STALL_SENSITIVITY  8
-//#define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
-//#define Z3_STALL_SENSITIVITY Z_STALL_SENSITIVITY
-//#define Z4_STALL_SENSITIVITY Z_STALL_SENSITIVITY
-//#define SPI_ENDSTOPS              // TMC2130 only
-//#define IMPROVE_HOMING_RELIABILITY
 #endif
 
 /**

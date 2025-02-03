@@ -1527,6 +1527,7 @@ void MarlinSettings::postprocess() {
         EEPROM_READ(planner.settings.acceleration);
         EEPROM_READ(planner.settings.retract_acceleration);
         EEPROM_READ(planner.settings.travel_acceleration);
+        EEPROM_READ(planner.settings.XYhoming_acceleration);
         EEPROM_READ(planner.settings.min_feedrate_mm_s);
         EEPROM_READ(planner.settings.min_travel_feedrate_mm_s);
 
@@ -2591,8 +2592,12 @@ void MarlinSettings::reset() {
   planner.settings.acceleration = DEFAULT_ACCELERATION;
   planner.settings.retract_acceleration = DEFAULT_RETRACT_ACCELERATION;
   planner.settings.travel_acceleration = DEFAULT_TRAVEL_ACCELERATION;
+  planner.settings.XYhoming_acceleration = DEFAULT_XYHOMING_ACCELERATION;
   planner.settings.min_feedrate_mm_s = feedRate_t(DEFAULT_MINIMUMFEEDRATE);
   planner.settings.min_travel_feedrate_mm_s = feedRate_t(DEFAULT_MINTRAVELFEEDRATE);
+
+  // initialize ishoming flag to false
+  planner.isXYHoming = false;
 
   #if HAS_CLASSIC_JERK
     #ifndef DEFAULT_XJERK
@@ -3190,6 +3195,7 @@ void MarlinSettings::reset() {
         PSTR("  M204 P"), LINEAR_UNIT(planner.settings.acceleration)
       , PSTR(" R"), LINEAR_UNIT(planner.settings.retract_acceleration)
       , SP_T_STR, LINEAR_UNIT(planner.settings.travel_acceleration)
+      , PSTR(" H"), LINEAR_UNIT(planner.settings.XYhoming_acceleration)
     );
 
     CONFIG_ECHO_HEADING(
