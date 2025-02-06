@@ -28,11 +28,11 @@
 
 /* EEPROM PINS
 #define SPI_EEPROM
-#define MARLIN_EEPROM_SIZE 0x40000 
+#define MARLIN_EEPROM_SIZE 0x40000
 #define SPI_CHAN_EEPROM1      1
 #define SPI_EEPROM1_CS       PD7 // EEPROM_CS_S
 #define EEPROM_MISO          PB4  // EEPROM_MISO
-#define EEPROM_MOSI          PB5  // EEPROM_MOSI  
+#define EEPROM_MOSI          PB5  // EEPROM_MOSI
 #define EEPROM_CLK           PB3 // EEPROM_CLK_S (X_ENN)
 //#define            PB3  // EEPROM_CLK
 #define EEPROM_PAGE_SIZE 0x100
@@ -42,12 +42,12 @@
 
 // I2C_EEPROM setup
 #define I2C_EEPROM
-#define MARLIN_EEPROM_SIZE  0x2000  //  (8Kbit, 8x1K) 
+#define MARLIN_EEPROM_SIZE  0x2000  //  (8Kbit, 8x1K)
 #define EEPROM_PAGE_SIZE 0x80   // ???? (page write 16 bytes of data)
 #define EEPROM_START_ADDRESS 0x0000 // ????
 #define I2C_SCL_PIN         PB6  // SCL_S
 #define I2C_SDA_PIN         PB7  // SDA_S
-#define EEPROM_DEVICE_ADDRESS  0xA0 // From Datasheet 1010 x b1 b2 r/w 
+#define EEPROM_DEVICE_ADDRESS  0xA0 // From Datasheet 1010 x b1 b2 r/w
 
 
 // Onboard I2C EEPROM
@@ -81,6 +81,12 @@
 //  #define FIL_RUNOUT_PIN                    PA1  // "FIL_SW" No Connection
 //#endif
 
+
+/*
+ * TMC Steppers related settings
+ */
+#define TMC_BAUD_RATE 115200
+
 //
 // Diag Pins
 //
@@ -102,12 +108,6 @@
 // Z Probe must be this pin
 //
 #define Z_MIN_PROBE_PIN                     Z_STOP_PIN  // PROBE
-                
-//
-// Steppers
-//
-//! X and Y pins were switched to avoid crossing wires in electronics box for Boron
-// For EVT1 X and Y pins returned back
 
 /*
 #define X_MS1_PIN                           PD6
@@ -150,9 +150,9 @@
 
 
 // Fake extruder to enable additonal thermistor
-//#define E1_ENABLE_PIN                       PC0   
-//#define E1_STEP_PIN                         PC1  
-//#define E1_DIR_PIN                          PC2   
+//#define E1_ENABLE_PIN                       PC0
+//#define E1_STEP_PIN                         PC1
+//#define E1_DIR_PIN                          PC2
 
 //
 // Temperature Sensors/ Thermistors  //!Currently assuming ch1 is chamber and ch2 is coldend
@@ -188,21 +188,21 @@
 //These two are the extruder heat sink and part cooling fan
 //!FAN_PIN is always on! other fan pins are set in config adv
 
-#define FAN1_PIN                           PE9   // "FAN_2" "FAN_HOT_MCU"
-#define FAN_PIN                            PB0   // "FAN_1" "FAN_PRINT_MCU"   -> 39
+#define FAN1_PIN                           PE9
+#define FAN0_PIN                           PB0
 //#define FAN2_PIN                         PA7
 
 //Remaining are the rest of the fans including the Hepa, heater, and electronics box fans
 // #define FAN2_PIN                          PE9    // "FAN_3"  -> pin 73   //!Use this as HEATER fan, MIGHT BE BROKEN
 // #define FAN3_PIN                          PE8    // "FAN_4"  -> pin 72   //!Now using this as HEATER fan
-// #define FAN4_PIN                          PE7    // "FAN_5"  -> pin 71   //!Use this as HEPA fan 
+// #define FAN4_PIN                          PE7    // "FAN_5"  -> pin 71   //!Use this as HEPA fan
 // #define FAN5_PIN                          PC12   // "FAN_6"  -> pin 44   //!Use this as electronics box fan 1
 // #define FAN6_PIN                          PC11   // "FAN_7"  -> pin 43   //!Use this as electronics box fan 2
 // #define FAN7_PIN                          PC10   // "FAN_8"  -> pin 42
 
 // #define FAN2_PIN                          PE9    // "FAN_3"  -> pin 73   //!Use this as HEATER fan, MIGHT BE BROKEN
 // #define FAN3_PIN                          PE8    // "FAN_4"  -> pin 72   //!Now using this as HEATER fan
-// #define FAN4_PIN                          PE7    // "FAN_5"  -> pin 71   //!Use this as HEPA fan 
+// #define FAN4_PIN                          PE7    // "FAN_5"  -> pin 71   //!Use this as HEPA fan
 // #define FAN5_PIN                          PC12   // "FAN_6"  -> pin 44   //!Use this as electronics box fan 1
 // #define FAN6_PIN                          PC11   // "FAN_7"  -> pin 43   //!Use this as electronics box fan 2
 // #define FAN7_PIN                          PC10   // "FAN_8"  -> pin 42
@@ -234,3 +234,5 @@
 // #ifndef PS_ON_PIN
 //   #define PS_ON_PIN                        PC13  // Power Supply Control
 // #endif
+//
+//

@@ -6,7 +6,7 @@ VariableXYSensitivity variableXYSensitivity;
 #if USE_SENSORLESS
     void GcodeSuite::M920() {
         if (parser.seen('S')) variableXYSensitivity.setToggle(parser.value_bool());
-        LOOP_XYZ(i) if (parser.seen(XYZ_CHAR(i))) {
+        LOOP_NUM_AXES(a) if (parser.seen(AXIS_CHAR(a))) {
             float value = parser.value_float();
             if (value < 0) {
                 value = 0;
@@ -17,7 +17,7 @@ VariableXYSensitivity variableXYSensitivity;
                 SERIAL_ECHO("Sensitivity values cannot be larger than 255. Sensitivity value set to 255.");
                 }
 
-            switch (i) {
+            switch (a) {
                 case X_AXIS:
                     variableXYSensitivity.setXBase(value);
                     break;

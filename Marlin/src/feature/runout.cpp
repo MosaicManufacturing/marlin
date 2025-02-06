@@ -59,7 +59,7 @@ bool FilamentMonitorBase::enabled = true,
 // Filament Runout event handler
 //
 #include "../MarlinCore.h"
-#include "../feature/pause.h"
+#include "pause.h"
 #include "../gcode/queue.h"
 
 #if ENABLED(HOST_ACTION_COMMANDS)
@@ -68,10 +68,12 @@ bool FilamentMonitorBase::enabled = true,
 
 #if ENABLED(EXTENSIBLE_UI)
   #include "../lcd/extui/ui_api.h"
+#elif ENABLED(DWIN_LCD_PROUI)
+  #include "../lcd/e3v2/proui/dwin.h"
 #endif
 
 void event_filament_runout(const uint8_t extruder) {
-  
+
   SERIAL_ECHOLNPGM("EVENT DETECTED");
 
   if (did_pause_print) return;  // Action already in progress. Purge triggered repeated runout.
@@ -88,6 +90,7 @@ void event_filament_runout(const uint8_t extruder) {
   #endif
 
   TERN_(EXTENSIBLE_UI, ExtUI::onFilamentRunout(ExtUI::getTool(extruder)));
+  TERN_(DWIN_LCD_PROUI, DWIN_FilamentRunout(extruder));
 
   #if ANY(HOST_PROMPT_SUPPORT, HOST_ACTION_COMMANDS, MULTI_FILAMENT_SENSOR)
     const char tool = '0' + TERN0(MULTI_FILAMENT_SENSOR, extruder);
@@ -95,8 +98,7 @@ void event_filament_runout(const uint8_t extruder) {
 
   //action:out_of_filament
   #if ENABLED(HOST_PROMPT_SUPPORT)
-    host_action_prompt_begin(PROMPT_FILAMENT_RUNOUT, PSTR("FilamentRunout T"), tool);
-    host_action_prompt_show();
+    hostui.prompt_do(PROMPT_FILAMENT_RUNOUT, F("FilamentRunout T"), tool); //action:out_of_filament
   #endif
 
   const bool run_runout_script = !runout.host_handling;
@@ -108,18 +110,18 @@ void event_filament_runout(const uint8_t extruder) {
         || TERN0(ADVANCED_PAUSE_FEATURE, strstr(FILAMENT_RUNOUT_SCRIPT, "M25"))
       )
     ) {
-      host_action_paused(false);
+      hostui.paused(false);
     }
     else {
       // Legacy Repetier command for use until newer version supports standard dialog
       // To be removed later when pause command also triggers dialog
       #ifdef ACTION_ON_FILAMENT_RUNOUT
-        host_action(PSTR(ACTION_ON_FILAMENT_RUNOUT " T"), false);
+        hostui.action(F(ACTION_ON_FILAMENT_RUNOUT " T"), false);
         SERIAL_CHAR(tool);
         SERIAL_EOL();
       #endif
 
-      host_action_pause(false);
+      hostui.pause(false);
     }
     SERIAL_ECHOPGM(" " ACTION_REASON_ON_FILAMENT_RUNOUT " ");
     SERIAL_CHAR(tool);
@@ -131,7 +133,7 @@ void event_filament_runout(const uint8_t extruder) {
       char script[strlen(FILAMENT_RUNOUT_SCRIPT) + 1];
       sprintf_P(script, PSTR(FILAMENT_RUNOUT_SCRIPT), tool);
       #if ENABLED(FILAMENT_RUNOUT_SENSOR_DEBUG)
-        SERIAL_ECHOLNPAIR("Runout Command: ", script);
+        SERIAL_ECHOLNPGM("Runout Command: ", script);
       #endif
       queue.inject(script);
     #else
@@ -139,8 +141,7 @@ void event_filament_runout(const uint8_t extruder) {
         SERIAL_ECHOPGM("Runout Command: ");
         SERIAL_ECHOLNPGM(FILAMENT_RUNOUT_SCRIPT);
       #endif
-      SERIAL_ECHOLNPGM("Reached queue.inject");
-      queue.inject_P(PSTR(FILAMENT_RUNOUT_SCRIPT));
+      queue.inject(F(FILAMENT_RUNOUT_SCRIPT));
     #endif
   }
 }
