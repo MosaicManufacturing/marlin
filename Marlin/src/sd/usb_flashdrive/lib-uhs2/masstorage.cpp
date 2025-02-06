@@ -796,7 +796,6 @@ uint8_t BulkOnly::RequestSense(uint8_t lun, uint16_t size, uint8_t *buf) {
         return Transaction(&cbw, size, buf);
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////
 // USB code
 ////////////////////////////////////////////////////////////////////////////////
@@ -956,12 +955,6 @@ uint8_t BulkOnly::HandleUsbError(uint8_t error, uint8_t index) {
   return ((error && !count) ? MASS_ERR_GENERAL_USB_ERROR : MASS_ERR_SUCCESS);
 }
 
-#if MS_WANT_PARSER
-  uint8_t BulkOnly::Transaction(CommandBlockWrapper *pcbw, uint16_t buf_size, void *buf) {
-    return Transaction(CommandBlockWrapper *pcbw, uint16_t buf_size, void *buf, 0);
-  }
-#endif
-
 /**
  * For driver use only.
  *
@@ -972,9 +965,7 @@ uint8_t BulkOnly::HandleUsbError(uint8_t error, uint8_t index) {
  * @return
  */
 uint8_t BulkOnly::Transaction(CommandBlockWrapper *pcbw, uint16_t buf_size, void *buf
-  #if MS_WANT_PARSER
-    , uint8_t flags
-  #endif
+  OPTARG(MS_WANT_PARSER, uint8_t flags/*=0*/)
 ) {
   #if MS_WANT_PARSER
     uint16_t bytes = (pcbw->dCBWDataTransferLength > buf_size) ? buf_size : pcbw->dCBWDataTransferLength;
@@ -1155,7 +1146,6 @@ uint8_t BulkOnly::HandleSCSIError(uint8_t status) {
       return status;
   } // switch
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // Debugging code

@@ -2,6 +2,9 @@
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
+ * Based on Sprinter and grbl.
+ * Copyright (c) 2011 Camiel Gubbels / Erik van der Zalm
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -16,7 +19,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
-#if defined(ARDUINO_ARCH_STM32) && !defined(STM32GENERIC)
+
+#include "../platforms.h"
+
+#ifdef HAL_STM32
 
 #include "../../inc/MarlinConfig.h"
 #include "MarlinSerial.h"
@@ -30,6 +36,15 @@
 #endif
 #ifndef USART5
   #define USART5 UART5
+#endif
+#ifndef USART7
+  #define USART7 UART7
+#endif
+#ifndef USART8
+  #define USART8 UART8
+#endif
+#ifndef USART9
+  #define USART9 UART9
 #endif
 
 #define DECLARE_SERIAL_PORT(ser_num) \
@@ -101,4 +116,4 @@ void MarlinSerial::_rx_complete_irq(serial_t *obj) {
   }
 }
 
-#endif // ARDUINO_ARCH_STM32 && !STM32GENERIC
+#endif // HAL_STM32
