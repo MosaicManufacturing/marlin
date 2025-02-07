@@ -408,15 +408,26 @@ void GcodeSuite::G28() {
 
     if (variableXYSensitivity.getToggle()) {
       #if (X_SENSORLESS)
+        int16_t xHomingSensitivity = variableXYSensitivity.getInitialYSensitivity();
         #if AXIS_HAS_STALLGUARD(X)
           //set base sensitivity for initial home if variable XY sensitivity is enabled
-          stepperX.homing_threshold(variableXYSensitivity.getXBase() - variableXYSensitivity.getXOffset()); //removed index if statement
+          stepperX.homing_threshold(xHomingSensitivity); //removed index if statement
         #endif
         #if AXIS_HAS_STALLGUARD(X2)
-          if (!(index & 1)) stepperX2.homing_threshold(value);
+          if (!(index & 1)) stepperX2.homing_threshold(xHomingSensitivity);
         #endif
       #endif
-      // MAYBE ADD SAME THING FOR Y TO BE NEAT?
+
+      #if (Y_SENSORLESS)
+        int16_t yHomingSensitivity = variableXYSensitivity.getInitialYSensitivity();
+        #if AXIS_HAS_STALLGUARD(Y)
+          //set base sensitivity for initial home if variable XY sensitivity is enabled
+          stepperY.homing_threshold(yHomingSensitivity); //removed index if statement
+        #endif
+        #if AXIS_HAS_STALLGUARD(Y2)
+          if (!(index & 1)) stepperY2.homing_threshold(yHomingSensitivity);
+        #endif
+      #endif
     }
 
     #if HAS_Z_AXIS
@@ -467,17 +478,12 @@ void GcodeSuite::G28() {
       if (doX && doY && variableXYSensitivity.getToggle()) {
         //if homing both axis, then at this point will have already homed Y and will be at back near motors
         #if X_SENSORLESS
-          const float maxChamberTemp = 80.;
-          const float minChamberTemp = 20.;
-          float offset_r = (thermalManager.degChamber() - minChamberTemp) / (maxChamberTemp - minChamberTemp);
-          offset_r = min(offset_r, 1.0f);
-          offset_r = max(offset_r, 0.0f);
-          int16_t value = (int16_t)floor(variableXYSensitivity.getXBase() - offset_r*variableXYSensitivity.getXOffset());
+          int16_t xHomingSensitivity = variableXYSensitivity.getVariableXSensitivity(thermalManager.degChamber());
           // note that this ^ is a 'floor' conversion
-          stepperX.homing_threshold(value); //removed index if statement
+          stepperX.homing_threshold(xHomingSensitivity); //removed index if statement
         #endif
         #if AXIS_HAS_STALLGUARD(X2) //should add ^ behavior to X2 motor?
-          if (!(index & 1)) stepperX2.homing_threshold(value);
+          if (!(index & 1)) stepperX2.homing_threshold(xHomingSensitivity);
         #endif
       }
       #if ENABLED(DUAL_X_CARRIAGE)
@@ -509,8 +515,13 @@ void GcodeSuite::G28() {
     #endif
 
     // Home Y (after X)
-    if ((DISABLED(HOME_Y_BEFORE_X) && doY) || (ENABLED(REHOME_Y_AFTER_X) && doY && doX))
+    if ((DISABLED(HOME_Y_BEFORE_X) && doY) || (ENABLED(REHOME_Y_AFTER_X) && doY && doX)) {
+      #if Y_SENSORLESS
+        int16_t yHomingSensitivity = variableXYSensitivity.getVariableYSensitivity(thermalManager.degChamber());
+        stepperY.homing_threshold(yHomingSensitivity); //removed index if statement
+      #endif
       homeaxis(Y_AXIS);
+    }
 
     #if HAS_Y_AXIS
       // Home Y (after X)
