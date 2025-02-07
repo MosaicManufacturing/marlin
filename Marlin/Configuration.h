@@ -61,7 +61,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "Scott_Feb_24" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "Mosaic Manufacturing Ltd." // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -792,7 +792,7 @@
  *
  * With this option disabled, bang-bang will be used. BED_LIMIT_SWITCHING enables hysteresis.
  */
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 #if ENABLED(PIDTEMPBED)
   //#define MIN_BED_POWER 0
@@ -800,9 +800,10 @@
 
 // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-#define DEFAULT_bedKp 15.11
-#define DEFAULT_bedKi 2.62
-#define DEFAULT_bedKd 58.14
+#define DEFAULT_bedKp 50.36
+#define DEFAULT_bedKi 9.49
+#define DEFAULT_bedKd 178.55
+// andrew edit
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #else
@@ -846,9 +847,9 @@
   // Lasko "MyHeat Personal Heater" (200w) modified with a Fotek SSR-10DA to control only the heating element
   // and placed inside the small Creality printer enclosure tent.
   //
-  #define DEFAULT_chamberKp  37.04
-  #define DEFAULT_chamberKi   1.40
-  #define DEFAULT_chamberKd 655.17
+  #define DEFAULT_chamberKp 135.57
+  #define DEFAULT_chamberKi 26.42
+  #define DEFAULT_chamberKd 463.79
   // M309 P37.04 I1.04 D655.17
 
 // FIND YOUR OWN: "M303 E-2 C8 S50" to run autotune on the chamber at 50 degreesC for 8 cycles.
@@ -1233,7 +1234,7 @@
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    400, 400, 25, 100          \
+    300, 300, 25, 100          \
   }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -1252,14 +1253,14 @@
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    5000, 5000, 100, 2000       \
+    9000, 9000, 100, 2000       \
   }
 
-//#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
+#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
 #define MAX_ACCEL_EDIT_VALUES \
   {                           \
-    6000, 6000, 200, 20000    \
+    9000, 9000, 200, 20000    \
   } // ...or, set your own edit limits
 #endif
 
@@ -1307,7 +1308,7 @@
 #endif
 #endif
 
-#define DEFAULT_EJERK 16.0 // May be used by Linear Advance
+#define DEFAULT_EJERK 5.0 // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
