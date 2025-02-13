@@ -1562,7 +1562,19 @@ void Temperature::mintemp_error(const heater_id_t heater_id) {
   void Temperature::manage_hotends(const millis_t &ms) {
     HOTEND_LOOP() {
       #if ENABLED(THERMAL_PROTECTION_HOTENDS)
-        if (degHotend(e) > temp_range[e].maxtemp) maxtemp_error((heater_id_t)e);
+      auto temp = degHotend(e);
+      auto maxTempThreshold = temp_range[e].maxtemp;
+
+      if (temp > maxTempThreshold) {
+        SERIAL_ECHOLNPGM(
+            "\ndebug hotend loop, hotend temp: ",
+            temp,
+            " maxTempThreshold: ",
+            maxTempThreshold
+        );
+
+        maxtemp_error((heater_id_t)e);
+      }
       #endif
 
       TERN_(HEATER_IDLE_HANDLER, heater_idle[e].update(ms));
@@ -1897,7 +1909,20 @@ void Temperature::task() {
 
   #if DISABLED(IGNORE_THERMOCOUPLE_ERRORS)
     #if TEMP_SENSOR_IS_MAX_TC(0)
-      if (degHotend(0) > _MIN(HEATER_0_MAXTEMP, TEMP_SENSOR_0_MAX_TC_TMAX - 1.00f)) maxtemp_error(H_E0);
+
+      auto temp = degHotend(0);
+      auto maxTempThreshold = _MIN(HEATER_0_MAXTEMP, TEMP_SENSOR_0_MAX_TC_TMAX - 1.00f);
+
+      if (temp > maxTempThreshold) {
+        SERIAL_ECHOLNPGM(
+            "\ndebug maxtc related, hotend temp: ",
+            temp,
+            " maxTempThreshold: ",
+            maxTempThreshold
+        );
+
+        maxtemp_error(H_E0);
+      }
       if (degHotend(0) < _MAX(HEATER_0_MINTEMP, TEMP_SENSOR_0_MAX_TC_TMIN + 0.01f)) mintemp_error(H_E0);
     #endif
     #if TEMP_SENSOR_IS_MAX_TC(1)
@@ -2436,8 +2461,26 @@ void Temperature::updateTemperaturesFromRawValues() {
     HOTEND_LOOP() {
       const raw_adc_t r = temp_hotend[e].getraw();
       const bool neg = temp_dir[e] < 0, pos = temp_dir[e] > 0;
-      if ((neg && r < temp_range[e].raw_max) || (pos && r > temp_range[e].raw_max))
+      if ((neg && r < temp_range[e].raw_max) || (pos && r > temp_range[e].raw_max)) {
+        SERIAL_ECHOLNPGM(
+            "\ndebug 2nd hotend loop, adc r: ",
+            r,
+            " neg: ",
+            neg,
+            " pos: ",
+            pos,
+            " maxTempThreshold: ",
+            temp_range[e].raw_max,
+            " max raw thermistor value: ",
+            TEMP_SENSOR_0_RAW_HI_TEMP,
+            " HAL_ADC_RANGE: ",
+            HAL_ADC_RANGE,
+            " OVERSAMPLENR: ",
+            OVERSAMPLENR
+        );
+
         maxtemp_error((heater_id_t)e);
+      }
 
       /**
       // DEBUG PREHEATING TIME
@@ -2772,7 +2815,7 @@ void Temperature::init() {
       _TEMP_MIN_E(0);
     #endif
     #if _MINMAX_TEST(0, MAX)
-      _TEMP_MAX_E(0);
+      // _TEMP_MAX_E(0);
     #endif
     #if _MINMAX_TEST(1, MIN)
       _TEMP_MIN_E(1);
